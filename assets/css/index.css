@@ -1,0 +1,20 @@
+@import url("./colors.css");
+@import url("./buttons.css");
+@import url("./layout.css");
+@import url("./typography.css");
+
+.illustration {
+  max-height: 70%;
+}
+
+.gray-bg {
+  background-color: var(--bg-color);
+}
+
+.buttons h1 {
+  margin: 35px 0;
+}
+
+.buttons a {
+  margin: 25px 0;
+}
