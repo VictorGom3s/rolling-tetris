@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("./../fonts/PressStart2P-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Mono";
+  src: url("./../fonts/UbuntuMono-Regular.ttf");
+}
+
+h1 {
+  font-size: 3rem;
+  font-family: "Press Start 2P", cursive;
+}
+
+h2,
+h3,
+p,
+body,
+a {
+  font-family: "Ubuntu Mono", monospace;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+p {
+  font-size: 1rem;
+}

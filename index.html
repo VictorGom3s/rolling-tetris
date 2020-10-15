@@ -4,8 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rolling Tetris</title>
+
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <!-- ************** -->
+
+    <!-- Page specific css -->
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <!-- ************** -->
   </head>
   <body>
-    <h1>Welcome Page</h1>
+    <main>
+      <div class="container flex v-stretch">
+        <div class="col-7 flex v-center">
+          <img
+            class="illustration"
+            src="./assets/svg/undraw_old_day_6x25.svg"
+            alt="a guy playing in a fliperama"
+          />
+        </div>
+
+        <div class="col-3 flex v-center">
+          <div class="buttons flex col h-center">
+            <h1>Welcome</h1>
+
+            <a href="#" class="btn btn-primary">Log In</a>
+
+            <a href="#" class="btn btn-secondary">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

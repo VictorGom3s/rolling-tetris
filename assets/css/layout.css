@@ -1,0 +1,75 @@
+/* Container que abriga o layout. Deve sempre ser usado */
+.container {
+  max-width: 92%;
+  margin: 0 auto;
+  overflow-x: visible;
+}
+
+/* Ativa o flexbox */
+.flex {
+  display: flex;
+}
+
+/* Cria uma linha */
+.row {
+  flex-direction: row;
+}
+
+/* Cria colunas */
+.col {
+  width: 100%;
+  flex-direction: column;
+}
+.col-9 {
+  width: 90%;
+  flex-direction: column;
+}
+.col-8 {
+  width: 80%;
+  flex-direction: column;
+}
+.col-7 {
+  width: 70%;
+  flex-direction: column;
+}
+.col-6 {
+  width: 60%;
+  flex-direction: column;
+}
+.col-5 {
+  width: 50%;
+  flex-direction: column;
+}
+.col-4 {
+  width: 40%;
+  flex-direction: column;
+}
+.col-3 {
+  width: 30%;
+  flex-direction: column;
+}
+.col-2 {
+  width: 20%;
+  flex-direction: column;
+}
+.col-1 {
+  width: 10%;
+  flex-direction: column;
+}
+
+/* Estica o elemento verticalmente */
+.v-stretch {
+  height: 100vh;
+  align-items: stretch;
+}
+
+/* Centraliza verticalmente */
+.v-center {
+  justify-content: center;
+  justify-self: center;
+}
+
+/* Centraliza horizontalmente */
+.h-center {
+  align-items: center;
+}
