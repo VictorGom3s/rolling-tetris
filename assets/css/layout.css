@@ -20,6 +20,11 @@
   width: 100%;
   flex-direction: column;
 }
+.col-10 {
+  width: 100%;
+  flex-direction: column;
+}
+
 .col-9 {
   width: 90%;
   flex-direction: column;
@@ -45,7 +50,7 @@
   flex-direction: column;
 }
 .col-3 {
-  width: 30%;
+  min-width: 30%;
   flex-direction: column;
 }
 .col-2 {
@@ -55,6 +60,19 @@
 .col-1 {
   width: 10%;
   flex-direction: column;
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10 {
+  flex-grow: 1;
 }
 
 /* Estica o elemento verticalmente */
