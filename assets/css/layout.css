@@ -5,6 +5,11 @@
   overflow-x: visible;
 }
 
+.container-fluid {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 /* Ativa o flexbox */
 .flex {
   display: flex;
