@@ -34,12 +34,12 @@
 					  <li><a href="./../index.html">&lt; Back</a></li>
 				  </ul>
 			  </header>
-			  <form>
+			  <form action="">
             <h1>Log in</h1>
-            <input type="text" class="input" />
-            <input type="password" class="input" />
+            <input type="text" placeholder="Username" pattern="[A-Za-z]" class="input" required />
+            <input type="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="input" required />
 
-            <a href="#" class="btn btn-primary">Log In</a>
+            <a href="./game.html" class="btn btn-primary">Log In</a>
             </form>
 
           </div>
