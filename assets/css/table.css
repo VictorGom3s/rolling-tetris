@@ -1,0 +1,33 @@
+table{
+    border-collapse: collapse;
+    position: relative;
+    margin-left: 180px;
+    margin-top: 180px;
+    margin-right: 180px;
+    box-shadow: rgba(0, 0, 0, 0.25);
+    filter: drop-shadow(5px 6px 15px rgba(0, 0, 0, 0.25))
+}
+
+
+th{
+    background-color: #343837;
+    color: white;
+    text-align: left;
+    height: 70px ;
+    width: 770px;
+    font-size: 36px;
+    font-weight: normal;
+    padding-left: 40px;
+    
+}
+   
+td{
+    height: 45px ;
+    width: 770px;
+    border: 1px solid #1d1d1d10;
+    padding-left: 40px;
+    font-size: 24px;
+    font-style: normal;
+    background-color: white;
+    
+}
