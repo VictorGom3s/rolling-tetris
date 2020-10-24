@@ -5,6 +5,16 @@
   overflow-x: visible;
 }
 
+.formMargin {
+  margin-top: 20%;
+}
+
+.linkMargin {
+  margin-top: 3%;
+  margin-left: 2%;
+}
+
+
 .container-fluid {
   width: 100%;
   overflow-x: hidden;

@@ -27,23 +27,25 @@
           />
         </div>
 
-        <div class="col-4 flex v-center">
+        <div class="col-4 flex">
+
+           <header class="header">
+          <ul class="h-center linkMargin">
+            <li><a href="./../index.html">&lt;Back</a></li>
+          </ul>
+        </header>
+        <div class = "flex v-center formMargin">
           <div class="buttons flex col h-center">
-			  <header class="header">
-				  <ul class="h-center">
-					  <li><a href="./../index.html">&lt; Back</a></li>
-				  </ul>
-			  </header>
+			 
 			  <form action="">
             <h1>Sign up</h1>
             <input type="text" placeholder="Username" pattern="[A-Za-z]" class="input" required />
             <input type="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="input" required />
             <input type="email" placeholder="e-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="input" required />
-
-            <a href="./game.html" class="btn btn-primary">Confirm</a>
-            </form>
-
+          </form>
           </div>
+          </div>
+           <a href="./game.html" class="btn btn-primary">Confirm</a>
         </div>
       </div>
     </main>

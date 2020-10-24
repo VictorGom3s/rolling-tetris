@@ -43,6 +43,7 @@ p {
   color: var(--text-color);
   cursor: pointer;
   transition: 0.2s;
+  
 }
 
 .header a:hover,
@@ -87,8 +88,9 @@ p {
   }
 
   .header a,
+
   .header p,
   .back-button {
     font-size: 1.125rem;
-  }
+   }
 }
