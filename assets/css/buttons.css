@@ -16,7 +16,9 @@
   .btn {
     display: block;
     margin: 10px;
-    padding: 10px 50px;
+    padding: 10px;
+   
+
     border: 1px solid black;
     text-transform: uppercase;
     box-shadow: 8px 8px 0px #000000;
@@ -28,12 +30,14 @@
 
 .btn-primary {
   background-color: var(--primary-color);
+  text-align: center;
+  margin-left: 120px;
+  margin-right: 120px;
 }
 
 .btn-primary:hover {
   background-color: var(--accent-color);
-}
-
+ }
 .btn-secondary {
   background-color: var(--secondary-color);
 }
