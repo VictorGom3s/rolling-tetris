@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log In - Rolling Tetris</title>
-  <!-- Reset CSS -->
+    <!-- Reset CSS -->
     <link rel="stylesheet" href="../assets/css/reset.css" />
     <!-- ************** -->
 
     <!-- Page specific css -->
     <link rel="stylesheet" href="../assets/css/index.css" />
     <!-- ************** -->
-    
+
     <!-- Form specific css -->
     <link rel="stylesheet" href="../assets/css/form.css" />
     <!-- ************** -->
@@ -27,25 +27,34 @@
           />
         </div>
 
+        <div class="col-4 flex">
+          <header class="header linkMargin">
+            <a href="./../index.html">&lt; Back</a>
+          </header>
 
-
-          <div class="col-4 flex" >
-            <header class="header">
-              <ul class="h-center linkMargin">
-                <li><a href="./../index.html">&lt;Back</a></li>
-              </ul>
-            </header>
-              <div class = "flex v-center">
-                <div class="buttons flex col h-center formMargin">
-      			      <form action="">
-                    <h1 >Log in</h1>
-                    <input type="text" placeholder="Username" pattern="[A-Za-z]" class="input" required />
-                      <input type="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="input" required />
-                  </form>
-                </div>
-              </div>
-            <a href="./game.html" class="btn btn-primary ">Log In</a>
+          <div class="flex v-center">
+            <div class="buttons flex col h-center formMargin">
+              <h1>Log in</h1>
+              <form class="flex col h-center v-centers">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  pattern="[A-Za-z]"
+                  class="input"
+                  required
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  class="input"
+                  required
+                />
+                <a href="./game.html" class="btn btn-primary"> Log In </a>
+              </form>
+            </div>
           </div>
+        </div>
       </div>
     </main>
   </body>

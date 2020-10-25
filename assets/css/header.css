@@ -12,6 +12,10 @@
   height: 100%;
 }
 
+.header ul .small {
+  font-size: 1.125rem;
+}
+
 @media (max-width: 600px) {
   .header {
     height: 120px;

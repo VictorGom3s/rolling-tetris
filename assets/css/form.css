@@ -2,21 +2,25 @@
 
 .input {
   display: block;
-  margin: 25px;
-  --padding: 15px 70px;
+  margin: 15px 0;
+  padding: 15px 30px;
   border: 1px solid black;
-  text-transform: uppercase;
   box-shadow: 8px 8px 0px #000000;
   color: #343837;
-  font-size: 1.900rem;
+  font-size: 1.325rem;
   transition: 0.2s;
+}
+
+.input:focus {
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 @media (max-width: 992px) {
   .input {
     display: block;
     margin: 10px;
-    --padding: 10px 50px;
+    padding: 10px 20px;
     border: 1px solid black;
     text-transform: uppercase;
     box-shadow: 8px 8px 0px #000000;
