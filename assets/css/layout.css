@@ -10,10 +10,9 @@
 }
 
 .linkMargin {
-  margin-top: 3%;
-  margin-left: 2%;
+  margin-top: 50px;
+  margin-left: 20px;
 }
-
 
 .container-fluid {
   width: 100%;
@@ -102,11 +101,15 @@
   justify-self: center;
 }
 
+.text-center {
+  text-align: center;
+}
+
 /* Centraliza horizontalmente */
 .h-center {
   align-items: center;
 }
 
-html{
-  background-color: #E5E5E5;
+.gray-bg {
+  background-color: var(--bg-color);
 }

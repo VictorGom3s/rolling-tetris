@@ -19,10 +19,6 @@
   }
 }
 
-.gray-bg {
-  background-color: var(--bg-color);
-}
-
 .buttons h1 {
   margin: 35px 0;
   text-align: center;
