@@ -28,39 +28,37 @@
         </div>
 
         <div class="col-4 flex">
-          <header class="header linkMargin">
+          <header class="header link-margin">
             <a href="./../index.html">&lt; Back</a>
           </header>
 
-          <div class="flex v-center formMargin">
+          <div class="flex v-center">
             <div class="buttons flex col h-center">
               <h1>Sign up</h1>
-              <form class="flex col h-center v-centers" action="./game.html">
-                <input
-                  type="text"
-                  placeholder="Complete Name"
-                  pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
-                  class="input"
-                  required
-                />
-                <input
-                  type="text"
-                  placeholder="Birth Date (mm/dd/yyyy)"
-                  pattern="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$"
-                  class="input"
-                  required
-                />
-                <input
-                  type="text"
-                  placeholder="CPF"
-                  pattern="^\d{3}\.\d{3}\.\d{3}\-\d{2}$"
-                  class="input"
-                  required
-                />
+              <form class="flex col h-center" action="./game.html">
+                <div class="flex row h-center container">
+                  <div class="col-7">
+                    <input
+                      type="text"
+                      placeholder="Complete Name"
+                      pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
+                      class="input"
+                      required
+                    />
+                  </div>
+                  <div class="col-3">
+                    <input
+                      type="date"
+                      title="Birth Date"
+                      class="input"
+                      required
+                    />
+                  </div>
+                </div>
+
                 <input
                   type="text"
                   placeholder="Phone Number"
-                  pattern=""
                   class="input"
                   required
                 />

@@ -6,9 +6,17 @@
   padding: 15px 30px;
   border: 1px solid black;
   box-shadow: 8px 8px 0px #000000;
-  color: #343837;
+  color: var(--text-color);
   font-size: 1.325rem;
   transition: 0.2s;
+}
+
+.col-7 .input {
+  padding: 15px 0px 15px 15px;
+}
+
+.input[type="date"] {
+  padding: 18px 20px;
 }
 
 .input:focus {
@@ -20,12 +28,11 @@
   .input {
     display: block;
     margin: 10px;
-    padding: 10px 20px;
+    padding: 15px 30px;
     border: 1px solid black;
-    text-transform: uppercase;
     box-shadow: 8px 8px 0px #000000;
-    color: #343837;
-    font-size: 1.885rem;
+    color: var(--text-color);
+    font-size: 1.325rem;
     transition: 0.2s;
   }
 }

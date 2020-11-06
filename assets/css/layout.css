@@ -5,11 +5,11 @@
   overflow-x: visible;
 }
 
-.formMargin {
+.form-margin {
   margin-top: 20%;
 }
 
-.linkMargin {
+.link-margin {
   margin-top: 50px;
   margin-left: 20px;
 }
@@ -112,4 +112,8 @@
 
 .gray-bg {
   background-color: var(--bg-color);
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
