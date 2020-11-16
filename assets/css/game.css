@@ -4,3 +4,33 @@
 @import url("./typography.css");
 @import url("./header.css");
 @import url("./table.css");
+
+.board {
+  border: 3px solid var(--text-color);
+  min-height: calc(100vh - 150px);
+}
+
+.box {
+  border-top: 3px solid var(--text-color);
+  border-left: 3px solid var(--text-color);
+  border-bottom: 3px solid var(--text-color);
+}
+.next {
+  border-top: 3px solid var(--text-color);
+  border-right: 3px solid var(--text-color);
+  border-bottom: 3px solid var(--text-color);
+}
+
+.box,
+.next {
+  min-height: 200px;
+  font-size: 1.5rem;
+}
+
+.right-column {
+  justify-content: space-between;
+}
+
+.history-section {
+  margin: 150px auto;
+}

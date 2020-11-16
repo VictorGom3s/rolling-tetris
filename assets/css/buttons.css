@@ -10,6 +10,7 @@
   color: #343837;
   font-size: 2.225rem;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 @media (max-width: 992px) {

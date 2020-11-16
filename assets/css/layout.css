@@ -5,6 +5,11 @@
   overflow-x: visible;
 }
 
+.board-container {
+  max-width: 72%;
+  margin: 50px auto;
+}
+
 .form-margin {
   margin-top: 20%;
 }
