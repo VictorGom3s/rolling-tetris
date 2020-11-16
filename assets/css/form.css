@@ -9,6 +9,7 @@
   color: var(--text-color);
   font-size: 1.325rem;
   transition: 0.2s;
+  background-color: var(--bg-color);
 }
 
 .col-7 .input {

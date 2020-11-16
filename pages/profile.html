@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rolling Tetris</title>
@@ -13,60 +12,48 @@
     <!-- Page specific css -->
     <link rel="stylesheet" href="./../assets/css/profile.css" />
     <!-- ************** -->
-</head>
+  </head>
 
-<body class="gray-bg">
+  <body class="gray-bg">
     <main>
-        <header class="header">
-            <ul class="h-center row v-center">
-                <li class="col-3">
-                    <a href="./game.html">&lt; Back</a>
-                </li>
-                <li>
-                    <p>Edit Profile</p>
-                </li>
-            </ul>
-        </header>
+      <header class="header">
+        <ul class="h-center row v-center">
+          <li class="col-3">
+            <a href="./game.html">&lt; Back</a>
+          </li>
+        </ul>
+      </header>
 
-        <div class="container flex h-center v-center v-stretch">
-            <div class="buttons flex col h-center">
-                <form class="flex col h-center" action="./game.html">
-                    <input
-                        type="text"
-                        placeholder="Full Name"
-                        pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
-                        class="input"
-                        required
-                    />
-                    <input
-                        type="date"
-                        title="Birth Date"
-                        class="input"
-                        required
-                    />
-                    <input
-                        type="text"
-                        placeholder="Phone Number"
-                        class="input"
-                        required
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        class="input"
-                        required
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        class="input"
-                    required />
-                    <button class="btn btn-primary">Confirm</button>
-                </form>
-            </div>
+      <div class="container flex v-center col">
+        <h1 class="title">Edit Profile</h1>
+        <div class="container flex h-center">
+          <form class="flex col" action="./game.html">
+            <input
+              type="text"
+              placeholder="Full Name"
+              pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
+              class="input"
+              required
+            />
+            <input type="date" title="Birth Date" class="input" required />
+            <input
+              type="text"
+              placeholder="Phone Number"
+              class="input"
+              required
+            />
+            <input type="email" placeholder="Email" class="input" required />
+            <input
+              type="password"
+              placeholder="Password"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              class="input"
+              required
+            />
+            <button class="btn btn-primary">Confirm</button>
+          </form>
         </div>
+      </div>
     </main>
-</body>
-
+  </body>
 </html>
