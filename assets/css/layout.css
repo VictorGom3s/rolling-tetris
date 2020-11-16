@@ -5,11 +5,16 @@
   overflow-x: visible;
 }
 
-.formMargin {
+.board-container {
+  max-width: 72%;
+  margin: 50px auto;
+}
+
+.form-margin {
   margin-top: 20%;
 }
 
-.linkMargin {
+.link-margin {
   margin-top: 50px;
   margin-left: 20px;
 }
@@ -112,4 +117,8 @@
 
 .gray-bg {
   background-color: var(--bg-color);
+}
+
+.wrap {
+  flex-wrap: wrap;
 }

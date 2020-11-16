@@ -20,18 +20,88 @@
           <li>
             <a href="./../index.html">&lt; Logout</a>
           </li>
-          <li>
-            <p>Score: 0</p>
-          </li>
-          <li>
-            <a class="small" href="./leaderboard.html">Leaderboard </a>
-          </li>
+          <span class="flex">
+            <li class="menu-item">
+              <a class="small" href="./leaderboard.html">Leaderboard </a>
+            </li>
+            <li class="menu-item">
+              <a class="small" href="./profile.html">Profile</a>
+            </li>
+          </span>
         </ul>
       </header>
 
-      <div class="container flex h-center v-center v-stretch">
-        <h2>Aqui vai o tabuleiro do tetris, dinamicamente gerado com JS 😄</h2>
+      <div class="board-container v-center">
+        <div class="flex">
+          <div class="flex col-2">
+            <span class="box flex v-center h-center"> 00:00 </span>
+            <span class="box flex v-center h-center">
+              <ul>
+                <li>Lines: 0</li>
+                <li>Score: 0</li>
+                <li>Level: 0</li>
+              </ul>
+            </span>
+          </div>
+
+          <canvas id="board" class="board col-4"></canvas>
+
+          <div class="flex col-2 right-column">
+            <canvas id="next" class="next"></canvas>
+            <button class="btn btn-secondary">Play</button>
+          </div>
+        </div>
       </div>
     </main>
+
+    <section class="history-section">
+      <div class="container">
+        <h1 class="text-center">My History</h1>
+        <div class="flex">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Score</th>
+                <th>Level</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>João Pedro</td>
+                <td>30</td>
+                <td>30</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>João Victor</td>
+                <td>30</td>
+                <td>30</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>João Gustavo</td>
+                <td>30</td>
+                <td>30</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>João Tony</td>
+                <td>30</td>
+                <td>30</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>João Nikolas</td>
+                <td>30</td>
+                <td>30</td>
+                <td>30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
