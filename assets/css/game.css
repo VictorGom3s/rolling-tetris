@@ -7,13 +7,13 @@
 
 .board {
   border: 3px solid var(--text-color);
-  min-height: calc(100vh - 150px);
+  /* max-height: calc(100vh - 120px); */
 }
 
 .box {
-  border-top: 3px solid var(--text-color);
+  /* border-top: 3px solid var(--text-color);
   border-left: 3px solid var(--text-color);
-  border-bottom: 3px solid var(--text-color);
+  border-bottom: 3px solid var(--text-color); */
 }
 .next {
   border-top: 3px solid var(--text-color);
