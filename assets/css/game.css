@@ -8,6 +8,8 @@
 .board {
   border: 3px solid var(--text-color);
   /* max-height: calc(100vh - 120px); */
+  height: 800px;
+  width: 400px;
 }
 
 .box {

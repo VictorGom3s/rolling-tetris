@@ -7,10 +7,12 @@ class Tabuleiro {
   _peca;
   _proximaPeca;
   ctx;
+  ctxProximaPeca;
 
-  constructor(colunas, linhas, canvas) {
+  constructor(colunas, linhas, canvas, canvasProximaPeca) {
     this._canvas = canvas;
     this.ctx = this._canvas.getContext("2d");
+    this.ctxProximaPeca = canvasProximaPeca.getContext("2d");
     this._colunas = new Array(colunas);
     this._peca = new MockPiece(this.ctx);
 
@@ -33,13 +35,26 @@ class Tabuleiro {
     this.ctx.canvas.height = linhas * BLOCK_SIZE;
 
     this.ctx.scale(BLOCK_SIZE, BLOCK_SIZE);
+
+    this.mostrarProximaPeca();
   }
 
   reset() {
     this._init(this._colunas.length, this._linhas.length);
   }
 
-  rotaciona() {}
+  rotaciona() {
+    this.ctx.save();
+
+    let rads = (180 * Math.PI * 2.0) / 360.0;
+    this.ctx.rotate(rads);
+    // this.ctx.translate(degrees * -0.55, degrees * -0.0167);
+    this.ctx.translate(-10, -30);
+  }
+
+  desrotaciona() {
+    this.ctx.restore();
+  }
 
   eliminar(linha) {}
 
@@ -54,12 +69,23 @@ class Tabuleiro {
   }
 
   obterPeca() {
+    if (this._precisaRotacionar()) {
+      this.rotaciona();
+    }
+
     this._proximaPeca = this._peca.gerarAleatoria();
+
     this._proximaPeca.draw();
     this._inserirPeca(this._proximaPeca);
   }
 
-  _precisaRotacionar() {}
+  _precisaRotacionar() {
+    return true;
+  }
+
+  mostrarProximaPeca() {
+    this.ctxProximaPeca.fillText("Preview da próxima peça", 85, 85);
+  }
 
   log() {
     console.table(this._linhas);
@@ -81,7 +107,7 @@ class MockPiece {
     ];
 
     // Starting position.
-    this.x = 3;
+    this.x = 7;
     this.y = 0;
   }
 
@@ -124,9 +150,9 @@ class MockMovement {
 }
 
 const canvas = document.getElementById("board");
-const ctx = canvas.getContext("2d");
+const preview = document.getElementById("next");
 
-const board = new Tabuleiro(10, 30, canvas);
+const board = new Tabuleiro(10, 30, canvas, preview);
 board.obterPeca();
 board.log();
 
