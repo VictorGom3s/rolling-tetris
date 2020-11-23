@@ -1,42 +1,38 @@
+import Peca from "./Peca.js";
+
 const BLOCK_SIZE = 30;
 
 class Tabuleiro {
   _colunas;
   _linhas;
-  _canvas;
   _peca;
   _proximaPeca;
   ctx;
-  ctxProximaPeca;
+  ctxProxima;
 
-  constructor(colunas, linhas, canvas, canvasProximaPeca) {
-    this._canvas = canvas;
-    this.ctx = this._canvas.getContext("2d");
-    this.ctxProximaPeca = canvasProximaPeca.getContext("2d");
+  constructor(colunas, linhas, canvas, canvasProxima) {
+    this.ctx = canvas.getContext("2d");
+    this.ctxProxima = canvasProxima.getContext("2d");
     this._colunas = new Array(colunas);
-    this._peca = new MockPiece(this.ctx);
+    this._peca = new Peca(this.ctx, this.ctxProxima);
 
     this._init(colunas, linhas);
   }
 
   _init(colunas, linhas) {
-    /* 
-      Inicia o tabuleiro.
-
-      Define o contexto 2d do canvas,
-      popula os arrays de linhas
-      e colunas e define tamanho e escala do canvas
-    */
-
     this._colunas.fill(0, 0, colunas);
     this._linhas = Array.from({ length: linhas }, () => Array(colunas).fill(0));
 
     this.ctx.canvas.width = colunas * BLOCK_SIZE;
     this.ctx.canvas.height = linhas * BLOCK_SIZE;
-
     this.ctx.scale(BLOCK_SIZE, BLOCK_SIZE);
 
-    this.mostrarProximaPeca();
+    this.ctxProxima.canvas.width = 5 * BLOCK_SIZE;
+    this.ctxProxima.canvas.height = 5 * BLOCK_SIZE;
+    this.ctxProxima.scale(BLOCK_SIZE, BLOCK_SIZE);
+
+    this._proximaPeca = new Peca(this.ctx, this.ctxProxima);
+    this.mostrarProxima(this._proximaPeca);
   }
 
   reset() {
@@ -48,7 +44,6 @@ class Tabuleiro {
 
     let rads = (180 * Math.PI * 2.0) / 360.0;
     this.ctx.rotate(rads);
-    // this.ctx.translate(degrees * -0.55, degrees * -0.0167);
     this.ctx.translate(-10, -30);
   }
 
@@ -56,11 +51,29 @@ class Tabuleiro {
     this.ctx.restore();
   }
 
-  eliminar(linha) {}
+  valid(peca) {
+    return peca.forma.every((row, dy) => {
+      return row.every((value, dx) => {
+        let x = peca.x + dx;
+        let y = peca.y + dy;
+        return (
+          this.isEmpty(value) || (this.insideWalls(x) && this.aboveFloor(y))
+        );
+      });
+    });
+  }
 
-  _inserirPeca(peca) {
-    peca.shape.forEach((row, y) => {
-      row.forEach((value, x) => {
+  isInsideWalls(x, y) {
+    return x >= 0 && x < this._colunas.length && y <= this._linhas.length;
+  }
+
+  notOccupied(x, y) {
+    return this._linhas[y] && this._linhas[y][x] === 0;
+  }
+
+  inserir(peca) {
+    peca.forma.forEach((linha, y) => {
+      linha.forEach((value, x) => {
         if (value > 0) {
           this._linhas[y + peca.y][x + peca.x] = value;
         }
@@ -68,84 +81,56 @@ class Tabuleiro {
     });
   }
 
+  desenharTabuleiro() {
+    this.ctx.clearRect(0, 0, 300, 900);
+    this._linhas.forEach((row, y) => {
+      row.forEach((value, x) => {
+        if (value > 0) {
+          this.ctx.fillStyle = "orange";
+          this.ctx.fillRect(x, y, 1, 1);
+        }
+      });
+    });
+  }
+
   obterPeca() {
+    /* Mover para Partida */
     if (this._precisaRotacionar()) {
-      this.rotaciona();
+      // this.rotaciona();
     }
 
-    this._proximaPeca = this._peca.gerarAleatoria();
-
-    this._proximaPeca.draw();
-    this._inserirPeca(this._proximaPeca);
+    // this._peca.draw();
+    this.inserir(this._peca);
+    this.desenharTabuleiro();
   }
 
   _precisaRotacionar() {
     return true;
   }
 
-  mostrarProximaPeca() {
-    this.ctxProximaPeca.fillText("Preview da próxima peça", 85, 85);
+  mostrarProxima(peca) {
+    peca.drawNext();
+  }
+
+  precisaEliminar() {
+    const eliminar = {};
+
+    this._linhas.forEach((row, index) => {
+      eliminar[index] = row.every((val) => val != 0);
+    });
+
+    return eliminar;
+  }
+
+  eliminar(numeroLinha) {
+    this._linhas.splice(numeroLinha, 1);
+    this._linhas.unshift(Array(this._colunas.length).fill(0));
+
+    this.desenharTabuleiro();
   }
 
   log() {
     console.table(this._linhas);
-  }
-}
-
-class MockPiece {
-  /*
-   Just a mock class to test the board.
-   Will be deleted
-  */
-  constructor(ctx) {
-    this.ctx = ctx;
-    this.color = "orange";
-    this.shape = [
-      [2, 0, 0],
-      [2, 2, 2],
-      [0, 0, 0],
-    ];
-
-    // Starting position.
-    this.x = 7;
-    this.y = 0;
-  }
-
-  gerarAleatoria() {
-    return this;
-  }
-
-  draw() {
-    this.ctx.fillStyle = this.color;
-    this.shape.forEach((row, y) => {
-      row.forEach((value, x) => {
-        if (value > 0) {
-          this.ctx.fillRect(this.x + x, this.y + y, 1, 1);
-        }
-      });
-    });
-  }
-}
-
-class MockMovement {
-  /*
-   Just a mock class to test the board.
-   Will be deleted
-  */
-  _KEY = {
-    LEFT: 37,
-    RIGHT: 39,
-    DOWN: 40,
-  };
-
-  _moves = {
-    [KEY.LEFT]: (p) => ({ ...p, x: p.x - 1 }),
-    [KEY.RIGHT]: (p) => ({ ...p, x: p.x + 1 }),
-    [KEY.DOWN]: (p) => ({ ...p, y: p.y + 1 }),
-  };
-
-  constructor() {
-    throw new Error("This is an abstract class. It shouldn't be instantiated");
   }
 }
 
@@ -154,6 +139,5 @@ const preview = document.getElementById("next");
 
 const board = new Tabuleiro(10, 30, canvas, preview);
 board.obterPeca();
-board.log();
-
-console.log(board);
+// board.eliminar(0);
+// board.log();
