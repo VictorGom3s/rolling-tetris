@@ -1,4 +1,4 @@
-import Peca from "./Peca.js";
+import { Peca, Cores } from "./Peca.js";
 
 const BLOCK_SIZE = 30;
 
@@ -86,7 +86,7 @@ class Tabuleiro {
     this._linhas.forEach((row, y) => {
       row.forEach((value, x) => {
         if (value > 0) {
-          this.ctx.fillStyle = "orange";
+          this.ctx.fillStyle = Object.values(Cores)[value - 1];
           this.ctx.fillRect(x, y, 1, 1);
         }
       });

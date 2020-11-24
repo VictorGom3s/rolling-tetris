@@ -1,4 +1,14 @@
-export default class Peca {
+const Cores = {
+  special: "gold",
+  pink: "#FE46A5",
+  green: "#35EBBD",
+  blue: "#247AFD",
+  yellow: "#FFAB0F",
+  salmon: "#F98272",
+  purple: "#C353F8",
+};
+
+class Peca {
   ctx;
   forma;
   cor;
@@ -11,55 +21,50 @@ export default class Peca {
     this.ctxNext = ctxNext;
     this.forma = this.gerarAleatoria();
     this.cor = this.gerarCor();
-    this.x = 3; // TODO: must set the position correctly
-    this.y = 0; // TODO: must set the position correctly
+    this.x = 3;
+    this.y = 0;
   }
 
   gerarAleatoria() {
     const shapes = [
       [
-        [0, 0, 0], // Special piece
-        [0, 1, 0], // Special piece
-        [0, 0, 0], // Special piece
+        [0, 0, 0],
+        [0, 1, 0],
+        [0, 0, 0],
       ],
       [
         [0, 2, 2, 0],
         [0, 2, 2, 0],
       ],
       [
-        [3, 3, 0], // Z
-        [0, 3, 0],
+        [0, 0, 3],
+        [0, 0, 3],
         [0, 3, 3],
       ],
       [
-        [0, 4, 4], // S
-        [0, 4, 0],
-        [4, 4, 0],
+        [0, 0, 0],
+        [4, 0, 4],
+        [4, 4, 4],
       ],
       [
-        [0, 5, 5], // J
         [0, 5, 0],
         [0, 5, 0],
+        [0, 5, 5],
       ],
       [
-        [6, 6, 0], // L
         [0, 6, 0],
-        [0, 6, 0],
+        [6, 6, 6],
+        [0, 0, 0],
       ],
       [
-        [0, 0, 0], // T
-        [7, 7, 7],
-        [0, 7, 0],
-      ],
-      [
-        [0, 8, 0], // I
-        [0, 8, 0],
-        [0, 8, 0],
-        [0, 8, 0],
+        [0, 7, 0, 0],
+        [0, 7, 0, 0],
+        [0, 7, 0, 0],
+        [0, 7, 0, 0],
       ],
     ];
 
-    this.forma = Math.round(Math.random() * 7);
+    this.forma = Math.round(Math.random() * 6);
     if (this.forma == 0) {
       this.especial = true;
       return shapes[this.forma];
@@ -75,48 +80,34 @@ export default class Peca {
 
     this.forma.forEach((array, index) => {
       if (array[index] != 0) {
-        shapeNumber = array[index];
+        shapeNumber = array[index] || array[index - 1];
       }
     });
 
-    const colors = [
-      "red",
-      "green",
-      "blue",
-      "yellow",
-      "orange",
-      "cyan",
-      "magenta",
-      "brown",
-    ];
-
     switch (shapeNumber) {
       case 1:
-        return (cor = colors[0]);
+        return (cor = Object.values(Cores)[0]);
 
       case 2:
-        return (cor = colors[1]);
+        return (cor = Object.values(Cores)[1]);
 
       case 3:
-        return (cor = colors[2]);
+        return (cor = Object.values(Cores)[2]);
 
       case 4:
-        return (cor = colors[3]);
+        return (cor = Object.values(Cores)[3]);
 
       case 5:
-        return (cor = colors[4]);
+        return (cor = Object.values(Cores)[4]);
 
       case 6:
-        return (cor = colors[5]);
+        return (cor = Object.values(Cores)[5]);
 
       case 7:
-        return (cor = colors[6]);
-
-      case 8:
-        return (cor = colors[7]);
+        return (cor = Object.values(Cores)[6]);
 
       default:
-        cor = "purple";
+        cor = "grey";
     }
 
     return cor;
@@ -144,3 +135,5 @@ export default class Peca {
     });
   }
 }
+
+export { Peca, Cores };
