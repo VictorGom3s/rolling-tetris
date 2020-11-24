@@ -14,40 +14,41 @@
     <!-- ************** -->
   </head>
   <body class="gray-bg">
-    <main>
-      <header class="header">
-        <ul class="h-center">
-          <li>
-            <a href="./../index.html">&lt; Logout</a>
+    <header class="header">
+      <ul class="h-center">
+        <li>
+          <a href="./../index.html">&lt; Logout</a>
+        </li>
+        <span class="flex">
+          <li class="menu-item">
+            <a class="small" href="./leaderboard.html">Leaderboard </a>
           </li>
-          <span class="flex">
-            <li class="menu-item">
-              <a class="small" href="./leaderboard.html">Leaderboard </a>
-            </li>
-            <li class="menu-item">
-              <a class="small" href="./profile.html">Profile</a>
-            </li>
-          </span>
-        </ul>
-      </header>
+          <li class="menu-item">
+            <a class="small" href="./profile.html">Profile</a>
+          </li>
+        </span>
+      </ul>
+    </header>
 
+    <main>
       <div class="board-container v-center">
         <div class="flex">
-          <div class="flex col-4">
-            <span class="box flex v-center h-center"> 00:00 </span>
-            <span class="box flex v-center h-center">
-              <ul>
-                <li>Lines: 0</li>
-                <li>Score: 0</li>
-                <li>Level: 0</li>
-              </ul>
-            </span>
+          <div class="flex col-3 left-column">
+            <span class="flex v-center h-center font-48"> 00:00 </span>
+            <span class="flex v-center h-center font-36 font-pressStart"
+              >Score: 0</span
+            >
+            <span class="flex v-center h-center font-24"> Lines: 0 </span>
           </div>
 
           <canvas id="board" class="board col-4"></canvas>
 
-          <div class="flex col-2 right-column">
-            <canvas id="next" class="next"></canvas>
+          <div class="right-column flex col-3">
+            <div class="right-wrapper">
+              <span class="flex v-center h-center font-48">Level: 0</span>
+
+              <canvas id="next" class="next"></canvas>
+            </div>
             <button class="btn btn-secondary">Play</button>
           </div>
         </div>

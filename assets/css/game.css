@@ -5,22 +5,30 @@
 @import url("./header.css");
 @import url("./table.css");
 
-.board {
-  border: 3px solid var(--text-color);
-  /* max-height: calc(100vh - 120px); */
-  height: 800px;
-  width: 400px;
+.font-64 {
+  font-size: 64px;
 }
 
-.box {
-  /* border-top: 3px solid var(--text-color);
-  border-left: 3px solid var(--text-color);
-  border-bottom: 3px solid var(--text-color); */
+.font-48 {
+  font-size: 48px;
 }
-.next {
-  border-top: 3px solid var(--text-color);
-  border-right: 3px solid var(--text-color);
-  border-bottom: 3px solid var(--text-color);
+
+.font-36 {
+  font-size: 36px;
+}
+
+.font-24 {
+  font-size: 24px;
+}
+
+.font-pressStart {
+  font-family: "Press Start 2P";
+}
+
+.board {
+  border: 3px solid var(--text-color);
+  height: 810px;
+  width: 400px;
 }
 
 .box,
@@ -30,6 +38,21 @@
 }
 
 .right-column {
+  justify-content: space-between;
+}
+
+.left-column {
+  margin: 20px auto;
+  max-height: 300px;
+  justify-content: space-between;
+}
+
+.right-wrapper {
+  height: 300px;
+  margin: 20px auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
