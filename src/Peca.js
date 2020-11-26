@@ -1,3 +1,5 @@
+import { Movimento } from "./Movimento.js";
+
 const Cores = {
   special: "gold",
   pink: "#FE46A5",
@@ -8,7 +10,7 @@ const Cores = {
   purple: "#C353F8",
 };
 
-class Peca {
+class Peca extends Movimento {
   ctx;
   forma;
   cor;
@@ -17,6 +19,8 @@ class Peca {
   y;
 
   constructor(ctx, ctxNext) {
+    super();
+
     this.ctx = ctx;
     this.ctxNext = ctxNext;
     this.forma = this.gerarAleatoria();
