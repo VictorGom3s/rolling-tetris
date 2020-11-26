@@ -104,6 +104,34 @@
         </div>
       </div>
     </section>
+
+    <section id="modal" class="modal flex col">
+      <div class="modal-header">
+        <h1 class="text-center font-36">Select board size</h1>
+        <a href="#" class="btn-close">X</a>
+      </div>
+
+      <div class="modal-body flex h-center">
+        <span class="text-center">
+          <a href="#">Default</a>
+        </span>
+        <span class="text-center">
+          <a href="#">Big</a>
+        </span>
+        <span>
+          <div class="text-center">Custom</div>
+          <div class="board-custom-size-inputs">
+            <input type="number" class="input-altura" id="altura" />
+            <div>X</div>
+            <input type="number" class="input-largura" id="largura" />
+          </div>
+        </span>
+      </div>
+
+      <div class="modal-footer flex">
+        <button class="btn btn-primary">Confirm</button>
+      </div>
+    </section>
   </body>
   <script type="module" src="./../src/Tabuleiro.js"></script>
 </html>

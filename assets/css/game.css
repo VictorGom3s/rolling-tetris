@@ -4,6 +4,7 @@
 @import url("./typography.css");
 @import url("./header.css");
 @import url("./table.css");
+@import url("./modal.css");
 
 .font-64 {
   font-size: 64px;
