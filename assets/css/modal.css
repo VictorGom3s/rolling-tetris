@@ -1,5 +1,6 @@
 .modal {
   position: absolute;
+  display: none;
   top: 20%;
   left: 22%;
   height: 468px;
@@ -9,6 +10,13 @@
   margin: 0px auto;
   padding: 10px;
   box-shadow: 10px 10px 100px 10000px rgba(0, 0, 0, 0.75);
+}
+
+.show {
+  display: flex;
+}
+.hide {
+  display: none;
 }
 
 .modal-header {
@@ -42,7 +50,7 @@
 }
 
 .modal-body input {
-  width: 25%;
+  width: 30%;
   background: none;
   border: none;
   border-bottom: 1px solid var(--secondary-color);

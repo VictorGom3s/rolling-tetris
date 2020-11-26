@@ -1,4 +1,5 @@
 import { Peca, Cores } from "./Peca.js";
+import Modal from "./../assets/js/Modal.js";
 
 const BLOCK_SIZE = 30;
 
@@ -137,7 +138,10 @@ class Tabuleiro {
 const canvas = document.getElementById("board");
 const preview = document.getElementById("next");
 
-const board = new Tabuleiro(10, 30, canvas, preview);
+const board = new Tabuleiro(10, 20, canvas, preview);
 board.obterPeca();
+
+const modal = new Modal("#modal");
+modal.show();
 // board.eliminar(0);
 // board.log();
