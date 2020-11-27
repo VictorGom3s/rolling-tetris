@@ -27,8 +27,10 @@ class Peca extends Movimento {
     this.cor = this.gerarCor();
     this.x = 3;
     this.y = 0;
+   
   }
 
+ 
   gerarAleatoria() {
     const shapes = [
       [
@@ -117,12 +119,25 @@ class Peca extends Movimento {
     return cor;
   }
 
+
+
   draw() {
     this.ctx.fillStyle = this.cor;
     this.forma.forEach((row, y) => {
       row.forEach((value, x) => {
         if (value > 0) {
           this.ctx.fillRect(this.x + x, this.y + y, 1, 1);
+        }
+      });
+    });
+  }
+
+  undraw() {/* nikolas*/
+    this.ctx.fillStyle = "#f0edef";
+    this.forma.forEach((row, y) => {
+      row.forEach((value, x) => {
+        if (value > 0) {
+          this.ctx.fillRect(this.x + x, this.y +   y, 1, 1);
         }
       });
     });

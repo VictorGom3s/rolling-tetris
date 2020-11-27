@@ -17,7 +17,9 @@ class Tabuleiro {
     this._colunas = new Array(colunas);
     this._peca = new Peca(this.ctx, this.ctxProxima);
 
+
     this._init(colunas, linhas);
+    this.keyListeners(); /*Nikolas*/
   }
 
   _init(colunas, linhas) {
@@ -58,14 +60,15 @@ class Tabuleiro {
         let x = peca.x + dx;
         let y = peca.y + dy;
         return (
-          this.isEmpty(value) || (this.insideWalls(x) && this.aboveFloor(y))
+          isEmpty(value) || (this.insideWalls(x,y) && this.aboveFloor(y))
         );
       });
     });
   }
-
+/*nikolas*/
   isInsideWalls(x, y) {
-    return x >= 0 && x < this._colunas.length && y <= this._linhas.length;
+    alert(x);
+    return x >= 0 && x <= (this._colunas.length - 4) && y <= this._linhas.length;
   }
 
   notOccupied(x, y) {
@@ -133,6 +136,32 @@ class Tabuleiro {
   log() {
     console.table(this._linhas);
   }
+ 
+   keyListeners(){/*Nikolas*/
+    document.addEventListener("keydown", (e) => {
+
+      let key_code = e.keyCode;
+      if(this.isInsideWalls(this._peca.x,this._peca.y)){
+      // Left
+      if (key_code == 37) {
+          this._peca.esquerda();
+      }
+    } 
+      // Right
+      if(this.isInsideWalls(this._peca.x,this._peca.y)){
+      if (key_code == 39) {
+        this._peca.direita();
+      }
+    }
+      /* Down
+      if (key_code == 40) {
+        
+      }
+    
+    */
+  });
+   
+   }
 }
 
 const canvas = document.getElementById("board");
@@ -143,5 +172,8 @@ board.obterPeca();
 
 const modal = new Modal("#modal");
 modal.show();
+
+ 
+
 // board.eliminar(0);
 // board.log();
