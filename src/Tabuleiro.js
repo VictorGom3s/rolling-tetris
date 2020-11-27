@@ -17,9 +17,8 @@ class Tabuleiro {
     this._colunas = new Array(colunas);
     this._peca = new Peca(this.ctx, this.ctxProxima);
 
-
     this._init(colunas, linhas);
-    this.keyListeners(); /*Nikolas*/
+    this.keyListeners();
   }
 
   _init(colunas, linhas) {
@@ -54,27 +53,6 @@ class Tabuleiro {
     this.ctx.restore();
   }
 
-  valid(peca) {
-    return peca.forma.every((row, dy) => {
-      return row.every((value, dx) => {
-        let x = peca.x + dx;
-        let y = peca.y + dy;
-        return (
-          isEmpty(value) || (this.insideWalls(x,y) && this.aboveFloor(y))
-        );
-      });
-    });
-  }
-/*nikolas*/
-  isInsideWalls(x, y) {
-    alert(x);
-    return x >= 0 && x <= (this._colunas.length - 4) && y <= this._linhas.length;
-  }
-
-  notOccupied(x, y) {
-    return this._linhas[y] && this._linhas[y][x] === 0;
-  }
-
   inserir(peca) {
     peca.forma.forEach((linha, y) => {
       linha.forEach((value, x) => {
@@ -103,9 +81,9 @@ class Tabuleiro {
       // this.rotaciona();
     }
 
-    // this._peca.draw();
-    this.inserir(this._peca);
-    this.desenharTabuleiro();
+    this._peca.draw();
+    // this.inserir(this._peca);
+    // this.desenharTabuleiro();
   }
 
   _precisaRotacionar() {
@@ -136,44 +114,60 @@ class Tabuleiro {
   log() {
     console.table(this._linhas);
   }
- 
-   keyListeners(){/*Nikolas*/
-    document.addEventListener("keydown", (e) => {
 
-      let key_code = e.keyCode;
-      if(this.isInsideWalls(this._peca.x,this._peca.y)){
-      // Left
-      if (key_code == 37) {
-          this._peca.esquerda();
+  valid(peca) {
+    return peca.forma.every((row, dy) => {
+      return row.every((value, dx) => {
+        let x = peca.x + dx;
+        let y = peca.y + dy;
+        return (
+          value == 0 || (this.isInsideWalls(x, y) && this.notOccupied(x, y))
+        );
+      });
+    });
+  }
+
+  podeMover(peca, x, y) {
+    if (!x) x = peca.x;
+    if (!y) y = peca.y;
+
+    return this.valid({ ...peca, x, y });
+  }
+
+  isInsideWalls(x, y) {
+    return x >= 0 && x < this._colunas.length && y < this._linhas.length;
+  }
+
+  notOccupied(x, y) {
+    return this._linhas[y] && this._linhas[y][x] === 0;
+  }
+
+  keyListeners() {
+    document.addEventListener("keydown", (e) => {
+      e.preventDefault();
+      switch (e.key) {
+        case "ArrowLeft":
+          if (this.podeMover(this._peca, this._peca.x - 1))
+            this._peca.esquerda();
+          break;
+        case "ArrowRight":
+          if (this.podeMover(this._peca, this._peca.x + 1))
+            this._peca.direita();
+          break;
+        case "ArrowDown":
+          if (this.podeMover(this._peca, this._peca.x, this._peca.y + 1))
+            this._peca.baixo();
+          break;
       }
-    } 
-      // Right
-      if(this.isInsideWalls(this._peca.x,this._peca.y)){
-      if (key_code == 39) {
-        this._peca.direita();
-      }
-    }
-      /* Down
-      if (key_code == 40) {
-        
-      }
-    
-    */
-  });
-   
-   }
+    });
+  }
 }
 
 const canvas = document.getElementById("board");
 const preview = document.getElementById("next");
 
-const board = new Tabuleiro(10, 20, canvas, preview);
+const board = new Tabuleiro(22, 44, canvas, preview);
 board.obterPeca();
 
 const modal = new Modal("#modal");
-modal.show();
-
- 
-
-// board.eliminar(0);
-// board.log();
+// modal.show();

@@ -27,10 +27,8 @@ class Peca extends Movimento {
     this.cor = this.gerarCor();
     this.x = 3;
     this.y = 0;
-   
   }
 
- 
   gerarAleatoria() {
     const shapes = [
       [
@@ -39,8 +37,8 @@ class Peca extends Movimento {
         [0, 0, 0],
       ],
       [
-        [0, 2, 2, 0],
-        [0, 2, 2, 0],
+        [2, 2],
+        [2, 2],
       ],
       [
         [0, 0, 3],
@@ -53,9 +51,9 @@ class Peca extends Movimento {
         [4, 4, 4],
       ],
       [
-        [0, 5, 0],
-        [0, 5, 0],
-        [0, 5, 5],
+        [5, 0],
+        [5, 0],
+        [5, 5],
       ],
       [
         [0, 6, 0],
@@ -119,8 +117,6 @@ class Peca extends Movimento {
     return cor;
   }
 
-
-
   draw() {
     this.ctx.fillStyle = this.cor;
     this.forma.forEach((row, y) => {
@@ -132,15 +128,8 @@ class Peca extends Movimento {
     });
   }
 
-  undraw() {/* nikolas*/
-    this.ctx.fillStyle = "#f0edef";
-    this.forma.forEach((row, y) => {
-      row.forEach((value, x) => {
-        if (value > 0) {
-          this.ctx.fillRect(this.x + x, this.y +   y, 1, 1);
-        }
-      });
-    });
+  undraw() {
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
   }
 
   drawNext() {

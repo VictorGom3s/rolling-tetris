@@ -1,5 +1,4 @@
 class Movimento {
-  
   velocidade;
 
   constructor() {
@@ -8,30 +7,26 @@ class Movimento {
     }
   }
 
-
-  esquerda(){
+  esquerda() {
     this.undraw();
     this.x = this.x - 1;
     this.draw();
   }
-  direita(){
+  direita() {
     this.undraw();
     this.x = this.x + 1;
     this.draw();
   }
 
-  down(){
-    //setar a velocidade
-   
+  baixo() {
+    this.undraw();
+    this.y = this.y + 1;
+    this.draw();
   }
 
-  up(){
+  up() {
     //gira a peca
   }
-
-
-
 }
-
 
 export { Movimento };
