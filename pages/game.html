@@ -34,22 +34,30 @@
       <div class="board-container v-center">
         <div class="flex">
           <div class="flex col-3 left-column">
-            <span class="flex v-center h-center font-48"> 00:00 </span>
-            <span class="flex v-center h-center font-36 font-pressStart"
+            <span class="flex v-center h-center font-48" id="timer">
+              00:00
+            </span>
+            <span
+              class="flex v-center h-center font-36 font-pressStart"
+              id="pontos"
               >Score: 0</span
             >
-            <span class="flex v-center h-center font-24"> Lines: 0 </span>
+            <span class="flex v-center h-center font-24" id="lines">
+              Lines: 0
+            </span>
           </div>
 
           <canvas id="board" class="board col-4"></canvas>
 
           <div class="right-column flex col-3">
             <div class="right-wrapper">
-              <span class="flex v-center h-center font-48">Level: 0</span>
+              <span class="flex v-center h-center font-48" id="level"
+                >Level: 0</span
+              >
 
               <canvas id="next" class="next"></canvas>
             </div>
-            <button class="btn btn-secondary">Play</button>
+            <button class="btn btn-secondary" id="btnPlay">Play</button>
           </div>
         </div>
       </div>
@@ -143,5 +151,6 @@
       </div>
     </div>
   </body>
-  <script type="module" src="./../src/Tabuleiro.js"></script>
+  <!-- <script type="module" src="./../src/Tabuleiro.js"></script> -->
+  <script type="module" src="./../src/Partida.js"></script>
 </html>

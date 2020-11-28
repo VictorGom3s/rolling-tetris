@@ -25,28 +25,25 @@ class Peca extends Movimento {
     this.ctxNext = ctxNext;
     this.forma = this.gerarAleatoria();
     this.cor = this.gerarCor();
-    this.x = 3;
+    console.log(ctx.canvas.width);
+    this.x = this.ctx.canvas.width / 30 / 2;
+    this.x -= 1;
     this.y = 0;
   }
 
   gerarAleatoria() {
     const shapes = [
-      [
-        [0, 0, 0],
-        [0, 1, 0],
-        [0, 0, 0],
-      ],
+      [[1]],
       [
         [2, 2],
         [2, 2],
       ],
       [
-        [0, 0, 3],
-        [0, 0, 3],
-        [0, 3, 3],
+        [0, 3],
+        [0, 3],
+        [3, 3],
       ],
       [
-        [0, 0, 0],
         [4, 0, 4],
         [4, 4, 4],
       ],
@@ -61,10 +58,10 @@ class Peca extends Movimento {
         [0, 0, 0],
       ],
       [
-        [0, 7, 0, 0],
-        [0, 7, 0, 0],
-        [0, 7, 0, 0],
-        [0, 7, 0, 0],
+        [0, 7, 0],
+        [0, 7, 0],
+        [0, 7, 0],
+        [0, 7, 0],
       ],
     ];
 

@@ -3,7 +3,7 @@ import Modal from "./../assets/js/Modal.js";
 
 const BLOCK_SIZE = 30;
 
-class Tabuleiro {
+export default class Tabuleiro {
   _colunas;
   _linhas;
   _peca;
@@ -15,10 +15,8 @@ class Tabuleiro {
     this.ctx = canvas.getContext("2d");
     this.ctxProxima = canvasProxima.getContext("2d");
     this._colunas = new Array(colunas);
-    this._peca = new Peca(this.ctx, this.ctxProxima);
 
     this._init(colunas, linhas);
-    this.keyListeners();
   }
 
   _init(colunas, linhas) {
@@ -33,8 +31,11 @@ class Tabuleiro {
     this.ctxProxima.canvas.height = 5 * BLOCK_SIZE;
     this.ctxProxima.scale(BLOCK_SIZE, BLOCK_SIZE);
 
-    this._proximaPeca = new Peca(this.ctx, this.ctxProxima);
-    this.mostrarProxima(this._proximaPeca);
+    // this._peca = new Peca(this.ctx, this.ctxProxima);
+    // this._proximaPeca = new Peca(this.ctx, this.ctxProxima);
+    // this.mostrarProxima(this._proximaPeca);
+
+    this.listen();
   }
 
   reset() {
@@ -63,6 +64,16 @@ class Tabuleiro {
     });
   }
 
+  desenhar(peca) {
+    this._peca = peca;
+    this._peca.draw();
+  }
+
+  desenharProxima(peca) {
+    this._proximaPeca = peca;
+    this._proximaPeca.drawNext();
+  }
+
   desenharTabuleiro() {
     this.ctx.clearRect(0, 0, 300, 900);
     this._linhas.forEach((row, y) => {
@@ -81,17 +92,13 @@ class Tabuleiro {
       // this.rotaciona();
     }
 
-    this._peca.draw();
+    // this._peca.draw();
     // this.inserir(this._peca);
     // this.desenharTabuleiro();
   }
 
   _precisaRotacionar() {
     return true;
-  }
-
-  mostrarProxima(peca) {
-    peca.drawNext();
   }
 
   precisaEliminar() {
@@ -142,7 +149,7 @@ class Tabuleiro {
     return this._linhas[y] && this._linhas[y][x] === 0;
   }
 
-  keyListeners() {
+  listen() {
     document.addEventListener("keydown", (e) => {
       e.preventDefault();
       switch (e.key) {
@@ -163,11 +170,11 @@ class Tabuleiro {
   }
 }
 
-const canvas = document.getElementById("board");
-const preview = document.getElementById("next");
+// const canvas = document.getElementById("board");
+// const preview = document.getElementById("next");
 
-const board = new Tabuleiro(22, 44, canvas, preview);
-board.obterPeca();
+// const board = new Tabuleiro(10, 20, canvas, preview);
+// board.obterPeca();
 
-const modal = new Modal("#modal");
+// const modal = new Modal("#modal");
 // modal.show();

@@ -24,10 +24,10 @@ export default class Modal {
     this.btnConfirm = this.modal.querySelector(".btn-primary");
     this.btnClose = this.modal.querySelector(".btn-close");
 
-    this.addListeners();
+    this._addListeners();
   }
 
-  addListeners() {
+  _addListeners() {
     this.btnClose.addEventListener("click", this.close.bind(this));
 
     this.btnDefault.addEventListener("click", this._setSize.bind(this, 10, 20));
@@ -60,9 +60,5 @@ export default class Modal {
 
   getSelectedSize() {
     return { altura: this.altura, largura: this.largura };
-  }
-
-  log() {
-    console.log(this);
   }
 }
