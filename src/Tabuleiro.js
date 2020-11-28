@@ -102,10 +102,12 @@ export default class Tabuleiro {
   }
 
   precisaEliminar() {
-    const eliminar = {};
+    const eliminar = [];
 
     this._linhas.forEach((row, index) => {
-      eliminar[index] = row.every((val) => val != 0);
+      if (row.every((val) => val != 0)) {
+        eliminar.push(index);
+      }
     });
 
     return eliminar;

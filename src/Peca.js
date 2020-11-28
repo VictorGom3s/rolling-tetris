@@ -126,10 +126,23 @@ class Peca extends Movimento {
   }
 
   undraw() {
-    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    this.forma.forEach((row, y) => {
+      row.forEach((value, x) => {
+        if (value > 0) {
+          this.ctx.clearRect(this.x + x, this.y + y, 1, 1);
+        }
+      });
+    });
   }
 
   drawNext() {
+    this.ctxNext.clearRect(
+      0,
+      0,
+      this.ctxNext.canvas.width,
+      this.ctxNext.canvas.height
+    );
+
     this.ctxNext.fillStyle = this.cor;
     this.forma.forEach((row, y) => {
       row.forEach((value, x) => {

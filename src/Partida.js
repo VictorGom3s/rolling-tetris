@@ -30,12 +30,49 @@ export default class Partida {
   }
 
   iniciarPartida() {
-    this.tabuleiro.desenhar(this.peca);
-    this.tabuleiro.desenharProxima(this.proximaPeca);
+    this._prepararPecas();
     this._iniciarTimer();
     this.tabuleiro.listen();
 
     this.iniciado = true;
+
+    this.game();
+  }
+
+  game() {
+    this.intervalID = setInterval(() => {
+      if (this.tabuleiro.podeMover(this.peca, this.peca.x, this.peca.y + 1)) {
+        this.peca.baixo();
+      } else if (this.peca.y === 0) {
+        this.gameOver();
+      } else {
+        this.tabuleiro.inserir(this.peca);
+        this.tabuleiro.desenharTabuleiro();
+
+        const linhas = this.tabuleiro.precisaEliminar();
+        console.log(linhas);
+        if (linhas) {
+          linhas.forEach((linha) => {
+            this.tabuleiro.eliminar(linha);
+          });
+        }
+
+        this.peca = this.proximaPeca;
+        this.proximaPeca = this._obterPeca();
+        this._prepararPecas();
+      }
+    }, 1000);
+  }
+
+  gameOver() {
+    alert("Game Over man");
+    clearInterval(this.intervalID);
+    this.iniciado = false;
+  }
+
+  _prepararPecas() {
+    this.tabuleiro.desenhar(this.peca);
+    this.tabuleiro.desenharProxima(this.proximaPeca);
   }
 
   _atualizarPontos() {}
@@ -44,6 +81,8 @@ export default class Partida {
 
   _iniciarTimer() {
     setInterval(() => {
+      if (!this.iniciado) return;
+
       if (this.secs < 59) {
         this.secs++;
       } else if (this.secs >= 59) {
