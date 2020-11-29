@@ -32,7 +32,6 @@ export default class Partida {
   iniciarPartida() {
     this._prepararPecas();
     this._iniciarTimer();
-    this.tabuleiro.listen();
 
     this.iniciado = true;
 
@@ -61,7 +60,7 @@ export default class Partida {
         this.proximaPeca = this._obterPeca();
         this._prepararPecas();
       }
-    }, 1000);
+    }, 2000);
   }
 
   gameOver() {

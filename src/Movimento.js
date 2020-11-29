@@ -8,20 +8,28 @@ class Movimento {
   }
 
   esquerda() {
+    console.log(this.x);
     this.undraw();
     this.x = this.x - 1;
     this.draw();
+    console.log(this.x);
   }
   direita() {
+    console.log(this.x);
+
     this.undraw();
     this.x = this.x + 1;
     this.draw();
+    console.log(this.x);
   }
 
   baixo() {
+    console.log(this.y);
+
     this.undraw();
     this.y = this.y + 1;
     this.draw();
+    console.log(this.y);
   }
 
   up() {

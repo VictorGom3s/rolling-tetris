@@ -1,5 +1,4 @@
-import { Peca, Cores } from "./Peca.js";
-import Modal from "./../assets/js/Modal.js";
+import { Cores } from "./Peca.js";
 
 const BLOCK_SIZE = 30;
 
@@ -30,10 +29,6 @@ export default class Tabuleiro {
     this.ctxProxima.canvas.width = 5 * BLOCK_SIZE;
     this.ctxProxima.canvas.height = 5 * BLOCK_SIZE;
     this.ctxProxima.scale(BLOCK_SIZE, BLOCK_SIZE);
-
-    // this._peca = new Peca(this.ctx, this.ctxProxima);
-    // this._proximaPeca = new Peca(this.ctx, this.ctxProxima);
-    // this.mostrarProxima(this._proximaPeca);
 
     this.listen();
   }
@@ -84,17 +79,6 @@ export default class Tabuleiro {
         }
       });
     });
-  }
-
-  obterPeca() {
-    /* Mover para Partida */
-    if (this._precisaRotacionar()) {
-      // this.rotaciona();
-    }
-
-    // this._peca.draw();
-    // this.inserir(this._peca);
-    // this.desenharTabuleiro();
   }
 
   _precisaRotacionar() {
@@ -171,12 +155,3 @@ export default class Tabuleiro {
     });
   }
 }
-
-// const canvas = document.getElementById("board");
-// const preview = document.getElementById("next");
-
-// const board = new Tabuleiro(10, 20, canvas, preview);
-// board.obterPeca();
-
-// const modal = new Modal("#modal");
-// modal.show();
