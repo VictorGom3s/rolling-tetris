@@ -31,11 +31,12 @@ export default class Partida {
 
   iniciarPartida() {
     this._prepararPecas();
+
     this._iniciarTimer();
 
     this.iniciado = true;
 
-    this.game();
+    // this.game();
   }
 
   game() {
@@ -49,7 +50,6 @@ export default class Partida {
         this.tabuleiro.desenharTabuleiro();
 
         const linhas = this.tabuleiro.precisaEliminar();
-        console.log(linhas);
         if (linhas) {
           linhas.forEach((linha) => {
             this.tabuleiro.eliminar(linha);

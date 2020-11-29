@@ -18,6 +18,38 @@ class Peca extends Movimento {
   x;
   y;
 
+  shapes = [
+    [[1]],
+    [
+      [2, 2],
+      [2, 2],
+    ],
+    [
+      [0, 3],
+      [0, 3],
+      [3, 3],
+    ],
+    [
+      [4, 0, 4],
+      [4, 4, 4],
+    ],
+    [
+      [5, 0],
+      [5, 0],
+      [5, 5],
+    ],
+    [
+      [0, 6, 0],
+      [6, 6, 6],
+    ],
+    [
+      [0, 7, 0],
+      [0, 7, 0],
+      [0, 7, 0],
+      [0, 7, 0],
+    ],
+  ];
+
   constructor(ctx, ctxNext) {
     super();
 
@@ -25,53 +57,20 @@ class Peca extends Movimento {
     this.ctxNext = ctxNext;
     this.forma = this.gerarAleatoria();
     this.cor = this.gerarCor();
-    console.log(ctx.canvas.width);
     this.x = this.ctx.canvas.width / 30 / 2;
     this.x -= 1;
     this.y = 0;
   }
 
   gerarAleatoria() {
-    const shapes = [
-      [[1]],
-      [
-        [2, 2],
-        [2, 2],
-      ],
-      [
-        [0, 3],
-        [0, 3],
-        [3, 3],
-      ],
-      [
-        [4, 0, 4],
-        [4, 4, 4],
-      ],
-      [
-        [5, 0],
-        [5, 0],
-        [5, 5],
-      ],
-      [
-        [0, 6, 0],
-        [6, 6, 6],
-        [0, 0, 0],
-      ],
-      [
-        [0, 7, 0],
-        [0, 7, 0],
-        [0, 7, 0],
-        [0, 7, 0],
-      ],
-    ];
-
     this.forma = Math.round(Math.random() * 6);
+    this.forma = 6;
     if (this.forma == 0) {
       this.especial = true;
-      return shapes[this.forma];
+      return this.shapes[this.forma];
     } else {
       this.especial = false;
-      return shapes[this.forma];
+      return this.shapes[this.forma];
     }
   }
 
@@ -79,10 +78,12 @@ class Peca extends Movimento {
     let cor;
     let shapeNumber;
 
-    this.forma.forEach((array, index) => {
-      if (array[index] != 0) {
-        shapeNumber = array[index] || array[index - 1];
-      }
+    this.forma.forEach((array) => {
+      array.forEach((val) => {
+        if (val != 0) {
+          shapeNumber = val;
+        }
+      });
     });
 
     switch (shapeNumber) {
