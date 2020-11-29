@@ -34,7 +34,8 @@ export default class Tabuleiro {
   }
 
   reset() {
-    this._init(this._colunas.length, this._linhas.length);
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    this._init(this._colunas.length + 1, this._linhas.length + 1);
   }
 
   rotaciona() {
@@ -73,7 +74,7 @@ export default class Tabuleiro {
   }
 
   desenharTabuleiro() {
-    this.ctx.clearRect(0, 0, 300, 900);
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this._linhas.forEach((row, y) => {
       row.forEach((value, x) => {
         if (value > 0) {

@@ -13,6 +13,11 @@
   cursor: pointer;
 }
 
+.btn-secondary:disabled {
+  background-color: var(--bg-color);
+  cursor: not-allowed;
+}
+
 @media (max-width: 992px) {
   .btn {
     display: block;

@@ -40,7 +40,7 @@ export default class Partida {
   }
 
   game() {
-    this.intervalID = setInterval(() => {
+    this.gameIntervalID = setInterval(() => {
       if (this.tabuleiro.podeMover(this.peca, this.peca.x, this.peca.y + 1)) {
         this.peca.baixo();
       } else if (this.peca.y === 0) {
@@ -64,9 +64,11 @@ export default class Partida {
   }
 
   gameOver() {
-    alert("Game Over man");
-    clearInterval(this.intervalID);
+    alert("Game Over");
+    clearInterval(this.gameIntervalID);
+    clearInterval(this.timerIntervalID);
     this.iniciado = false;
+    window.location.reload();
   }
 
   _prepararPecas() {
@@ -79,9 +81,7 @@ export default class Partida {
   _atualizarLinhas() {}
 
   _iniciarTimer() {
-    setInterval(() => {
-      if (!this.iniciado) return;
-
+    this.timerIntervalID = setInterval(() => {
       if (this.secs < 59) {
         this.secs++;
       } else if (this.secs >= 59) {
@@ -108,6 +108,7 @@ const preview = document.getElementById("next");
 
 btnPlay.addEventListener("click", (e) => {
   e.preventDefault();
+  btnPlay.setAttribute("disabled", "");
 
   document.documentElement.requestFullscreen();
 
