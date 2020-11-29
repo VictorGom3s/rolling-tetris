@@ -42,7 +42,10 @@ export default class Tabuleiro {
 
     let rads = (180 * Math.PI * 2.0) / 360.0;
     this.ctx.rotate(rads);
-    this.ctx.translate(-10, -30);
+    this.ctx.translate(
+      -this.ctx.canvas.width / 30,
+      -this.ctx.canvas.height / 30
+    );
   }
 
   desrotaciona() {
@@ -81,10 +84,6 @@ export default class Tabuleiro {
     });
   }
 
-  _precisaRotacionar() {
-    return true;
-  }
-
   precisaEliminar() {
     const eliminar = [];
 
@@ -98,10 +97,22 @@ export default class Tabuleiro {
   }
 
   eliminar(numeroLinha) {
+    if (this._precisaRotacionar(numeroLinha)) {
+      this.rotaciona();
+    }
+
     this._linhas.splice(numeroLinha, 1);
     this._linhas.unshift(Array(this._colunas.length).fill(0));
 
     this.desenharTabuleiro();
+  }
+
+  _precisaRotacionar(numeroLinha) {
+    let rotacionar = false;
+
+    if (this._linhas[numeroLinha].includes(1)) rotacionar = true;
+
+    return rotacionar;
   }
 
   log() {

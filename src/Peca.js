@@ -64,7 +64,6 @@ class Peca extends Movimento {
 
   gerarAleatoria() {
     this.forma = Math.round(Math.random() * 6);
-    this.forma = 6;
     if (this.forma == 0) {
       this.especial = true;
       return this.shapes[this.forma];
