@@ -1,20 +1,16 @@
 import { Peca } from "./Peca.js";
 import Tabuleiro from "./Tabuleiro.js";
+import Placar from "./Placar.js";
 import Modal from "./../assets/js/Modal.js";
 export default class Partida {
   player;
   tabuleiro;
+  placar;
   peca;
   proximaPeca;
   iniciado = false;
   timerElement;
-  linesElement;
-  lines;
-  pontosElement;
-  pontos;
-  levelElement;
-  level;
-  velocidade;
+
   mins;
   secs;
 
@@ -23,16 +19,10 @@ export default class Partida {
     this.levelElement = 0;
     this.player = { nome: "Usuário" };
     this.tabuleiro = Tabuleiro;
+    this.placar = new Placar(this);
     this.peca = this._obterPeca();
     this.proximaPeca = this._obterPeca();
     this.timerElement = document.getElementById("timer");
-    this.linesElement = document.getElementById("lines");
-    this.levelElement = document.getElementById("level");
-    this.pontosElement = document.getElementById("pontos");
-    this.pontos = 0;
-    this.lines = 0;
-    this.level = 1;
-    this.velocidade = 1;
     this.mins = 0;
     this.secs = 0;
   }
@@ -64,14 +54,14 @@ export default class Partida {
             this.tabuleiro.eliminar(linha);
           });
 
-          this.atualizarPlacar(linhas.length);
+          this.placar.atualizarPlacar(linhas.length);
         }
 
         this.peca = this.proximaPeca;
         this.proximaPeca = this._obterPeca();
         this._prepararPecas();
       }
-    }, Math.floor(2000 / this.velocidade));
+    }, Math.floor(2000 / this.placar.velocidade));
   }
 
   breakGameLoop() {
@@ -89,49 +79,6 @@ export default class Partida {
   _prepararPecas() {
     this.tabuleiro.desenhar(this.peca);
     this.tabuleiro.desenharProxima(this.proximaPeca);
-  }
-
-  atualizarPlacar(linhasEliminadas) {
-    this._atualizarLevel();
-    this._atualizarLinhas(linhasEliminadas);
-    this._atualizarPontos(linhasEliminadas);
-  }
-
-  _atualizarVelocidade() {
-    this.breakGameLoop();
-
-    this.velocidade++;
-
-    this.game();
-  }
-
-  _atualizarPontos(linhas) {
-    this.pontos += 10 * linhas;
-    let bonus = 0;
-
-    if (linhas > 1) {
-      bonus = 10 * linhas;
-    }
-
-    if (this.pontos % 300 == 0) {
-      this._atualizarVelocidade();
-    }
-
-    this.pontos += bonus;
-
-    this.pontosElement.innerText = ` ${this.pontos}`;
-  }
-
-  _atualizarLinhas(linhasEliminadas) {
-    this.lines += linhasEliminadas;
-
-    this.linesElement.innerText = ` ${this.lines}`;
-  }
-
-  _atualizarLevel() {
-    this.level++;
-
-    this.levelElement.innerText = ` ${this.level}`;
   }
 
   _iniciarTimer() {
