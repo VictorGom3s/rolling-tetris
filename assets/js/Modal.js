@@ -1,6 +1,6 @@
 export default class Modal {
   modal;
-  altura = 30;
+  altura = 20;
   largura = 10;
   inputCustomAltura;
   inputCustomLargura;
