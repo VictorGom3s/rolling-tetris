@@ -32,7 +32,7 @@ export default class Partida {
     this.pontos = 0;
     this.lines = 0;
     this.level = 1;
-    this.velocidade = 3000;
+    this.velocidade = 1;
     this.mins = 0;
     this.secs = 0;
   }
@@ -61,19 +61,21 @@ export default class Partida {
 
         if (linhas.length > 0) {
           linhas.forEach((linha) => {
-            this._atualizarLinhas();
-            this._atualizarLevel();
             this.tabuleiro.eliminar(linha);
           });
 
-          this._atualizarPontos(linhas.length, linhas.length);
+          this.atualizarPlacar(linhas.length);
         }
 
         this.peca = this.proximaPeca;
         this.proximaPeca = this._obterPeca();
         this._prepararPecas();
       }
-    }, Math.floor(this.velocidade));
+    }, Math.floor(2000 / this.velocidade));
+  }
+
+  breakGameLoop() {
+    clearInterval(this.gameIntervalID);
   }
 
   gameOver() {
@@ -89,31 +91,45 @@ export default class Partida {
     this.tabuleiro.desenharProxima(this.proximaPeca);
   }
 
-  _atualizarPontos(linhas, multiplicador = 1) {
+  atualizarPlacar(linhasEliminadas) {
+    this._atualizarLevel();
+    this._atualizarLinhas(linhasEliminadas);
+    this._atualizarPontos(linhasEliminadas);
+  }
+
+  _atualizarVelocidade() {
+    this.breakGameLoop();
+
+    this.velocidade++;
+
+    this.game();
+  }
+
+  _atualizarPontos(linhas) {
     this.pontos += 10 * linhas;
     let bonus = 0;
 
     if (linhas > 1) {
-      bonus = 10 * multiplicador;
+      bonus = 10 * linhas;
+    }
+
+    if (this.pontos % 300 == 0) {
+      this._atualizarVelocidade();
     }
 
     this.pontos += bonus;
 
     this.pontosElement.innerText = ` ${this.pontos}`;
-
-    if (this.pontos / 300) {
-    }
   }
 
-  _atualizarLinhas() {
-    this.lines++;
+  _atualizarLinhas(linhasEliminadas) {
+    this.lines += linhasEliminadas;
 
     this.linesElement.innerText = ` ${this.lines}`;
   }
 
   _atualizarLevel() {
     this.level++;
-    this.velocidade /= this.level;
 
     this.levelElement.innerText = ` ${this.level}`;
   }
@@ -132,8 +148,6 @@ export default class Partida {
       }:${this.secs < 10 ? "0" + this.secs : this.secs}`;
     }, 1000);
   }
-
-  _calcularBonus() {}
 
   _obterPeca() {
     return new Peca(this.tabuleiro.ctx, this.tabuleiro.ctxProxima);
