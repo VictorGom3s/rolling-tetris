@@ -100,6 +100,9 @@ export default class Placar {
 
   atualizarHistorico() {
     const placares = this._obterPlacares();
+
+    if (!placares) return;
+
     this.tableHistorico.innerHTML = "";
 
     placares.forEach((partida) => {
