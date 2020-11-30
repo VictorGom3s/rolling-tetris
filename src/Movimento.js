@@ -1,5 +1,4 @@
 class Movimento {
-  velocidade;
 
   constructor() {
     if (this.constructor == Movimento) {
@@ -24,8 +23,16 @@ class Movimento {
     this.draw();
   }
 
-  up() {
-    //gira a peca
+  girar() {
+    this.undraw();
+    for (let y = 0; y < this.forma.length; ++y) {
+      for (let x = 0; x < y; ++x) {
+        [this.forma[x][y],this.forma[y][x]] = 
+        [this.forma[y][x], this.forma[x][y]];
+      }
+    }
+    this.forma.forEach(row => row.reverse());
+    this.draw();
   }
 }
 

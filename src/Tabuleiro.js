@@ -36,7 +36,6 @@ export default class Tabuleiro {
   reset() {
     this._init(this._colunas.length, this._linhas.length);
   }
-
   rotaciona() {
     this.ctx.save();
 
@@ -161,6 +160,12 @@ export default class Tabuleiro {
         case "ArrowDown":
           if (this.podeMover(this._peca, this._peca.x, this._peca.y + 1))
             this._peca.baixo();
+          break;
+
+          //teste
+        case "ArrowUp":
+          if (this.podeMover(this._peca, this._peca.x, this._peca.y + 1))
+            this._peca.girar();
           break;
       }
     });
