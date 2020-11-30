@@ -7,24 +7,30 @@ export default class Partida {
   peca;
   proximaPeca;
   iniciado = false;
-  timer;
+  timerElement;
+  linesElement;
   lines;
+  pontosElement;
   pontos;
+  levelElement;
   level;
   mins;
   secs;
 
   constructor(Tabuleiro) {
-    this.pontos = 0;
-    this.level = 0;
+    this.pontosElement = 0;
+    this.levelElement = 0;
     this.player = { nome: "Usuário" };
     this.tabuleiro = Tabuleiro;
     this.peca = this._obterPeca();
     this.proximaPeca = this._obterPeca();
-    this.timer = document.getElementById("timer");
-    this.lines = document.getElementById("lines");
-    this.level = document.getElementById("level");
-    this.pontos = document.getElementById("pontos");
+    this.timerElement = document.getElementById("timer");
+    this.linesElement = document.getElementById("lines");
+    this.levelElement = document.getElementById("level");
+    this.pontosElement = document.getElementById("pontos");
+    this.pontos = 0;
+    this.lines = 0;
+    this.level = 0;
     this.mins = 0;
     this.secs = 0;
   }
@@ -89,9 +95,9 @@ export default class Partida {
         this.mins++;
       }
 
-      this.timer.innerText = `${this.mins < 10 ? "0" + this.mins : this.mins}:${
-        this.secs < 10 ? "0" + this.secs : this.secs
-      }`;
+      this.timerElement.innerText = `${
+        this.mins < 10 ? "0" + this.mins : this.mins
+      }:${this.secs < 10 ? "0" + this.secs : this.secs}`;
     }, 1000);
   }
 
