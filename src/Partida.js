@@ -14,6 +14,7 @@ export default class Partida {
   pontos;
   levelElement;
   level;
+  velocidade;
   mins;
   secs;
 
@@ -30,7 +31,8 @@ export default class Partida {
     this.pontosElement = document.getElementById("pontos");
     this.pontos = 0;
     this.lines = 0;
-    this.level = 0;
+    this.level = 1;
+    this.velocidade = 3000;
     this.mins = 0;
     this.secs = 0;
   }
@@ -56,17 +58,22 @@ export default class Partida {
         this.tabuleiro.desenharTabuleiro();
 
         const linhas = this.tabuleiro.precisaEliminar();
-        if (linhas) {
+
+        if (linhas.length > 0) {
           linhas.forEach((linha) => {
+            this._atualizarLinhas();
+            this._atualizarLevel();
             this.tabuleiro.eliminar(linha);
           });
+
+          this._atualizarPontos(linhas.length, linhas.length);
         }
 
         this.peca = this.proximaPeca;
         this.proximaPeca = this._obterPeca();
         this._prepararPecas();
       }
-    }, 200);
+    }, Math.floor(this.velocidade));
   }
 
   gameOver() {
@@ -82,9 +89,34 @@ export default class Partida {
     this.tabuleiro.desenharProxima(this.proximaPeca);
   }
 
-  _atualizarPontos() {}
+  _atualizarPontos(linhas, multiplicador = 1) {
+    this.pontos += 10 * linhas;
+    let bonus = 0;
 
-  _atualizarLinhas() {}
+    if (linhas > 1) {
+      bonus = 10 * multiplicador;
+    }
+
+    this.pontos += bonus;
+
+    this.pontosElement.innerText = ` ${this.pontos}`;
+
+    if (this.pontos / 300) {
+    }
+  }
+
+  _atualizarLinhas() {
+    this.lines++;
+
+    this.linesElement.innerText = ` ${this.lines}`;
+  }
+
+  _atualizarLevel() {
+    this.level++;
+    this.velocidade /= this.level;
+
+    this.levelElement.innerText = ` ${this.level}`;
+  }
 
   _iniciarTimer() {
     this.timerIntervalID = setInterval(() => {
