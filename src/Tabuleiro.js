@@ -162,8 +162,6 @@ export default class Tabuleiro {
           if (this.podeMover(this._peca, this._peca.x, this._peca.y + 1))
             this._peca.baixo();
           break;
-
-          //teste
         case "ArrowUp":
           if (this.podeMover(this._peca, this._peca.x, this._peca.y + 1))
             this._peca.girar();
