@@ -14,41 +14,51 @@
     <!-- ************** -->
   </head>
   <body class="gray-bg">
-    <main>
-      <header class="header">
-        <ul class="h-center">
-          <li>
-            <a href="./../index.html">&lt; Logout</a>
+    <header class="header">
+      <ul class="h-center">
+        <li>
+          <a href="./../index.html">&lt; Logout</a>
+        </li>
+        <span class="flex">
+          <li class="menu-item">
+            <a class="small" href="./leaderboard.html">Leaderboard </a>
           </li>
-          <span class="flex">
-            <li class="menu-item">
-              <a class="small" href="./leaderboard.html">Leaderboard </a>
-            </li>
-            <li class="menu-item">
-              <a class="small" href="./profile.html">Profile</a>
-            </li>
-          </span>
-        </ul>
-      </header>
+          <li class="menu-item">
+            <a class="small" href="./profile.html">Profile</a>
+          </li>
+        </span>
+      </ul>
+    </header>
 
+    <main>
       <div class="board-container v-center">
         <div class="flex">
-          <div class="flex col-2">
-            <span class="box flex v-center h-center"> 00:00 </span>
-            <span class="box flex v-center h-center">
-              <ul>
-                <li>Lines: 0</li>
-                <li>Score: 0</li>
-                <li>Level: 0</li>
-              </ul>
+          <div class="flex col-3 left-column">
+            <span class="flex v-center h-center font-48" id="timer">
+              00:00
+            </span>
+            <span class="flex v-center h-center font-36 font-pressStart">
+              Score:
+              <span id="pontos"> 0</span>
+            </span>
+            <span class="flex v-center h-center font-24">
+              Lines:
+              <span id="lines"> 0</span>
             </span>
           </div>
 
           <canvas id="board" class="board col-4"></canvas>
 
-          <div class="flex col-2 right-column">
-            <canvas id="next" class="next"></canvas>
-            <button class="btn btn-secondary">Play</button>
+          <div class="right-column flex col-3">
+            <div class="right-wrapper">
+              <span class="flex v-center h-center font-48">
+                Level:
+                <span id="level"> 0</span>
+              </span>
+
+              <canvas id="next" class="next"></canvas>
+            </div>
+            <button class="btn btn-secondary" id="btnPlay">Play</button>
           </div>
         </div>
       </div>
@@ -67,41 +77,49 @@
                 <th>Time</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>João Pedro</td>
-                <td>30</td>
-                <td>30</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <td>João Victor</td>
-                <td>30</td>
-                <td>30</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <td>João Gustavo</td>
-                <td>30</td>
-                <td>30</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <td>João Tony</td>
-                <td>30</td>
-                <td>30</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <td>João Nikolas</td>
-                <td>30</td>
-                <td>30</td>
-                <td>30</td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
         </div>
       </div>
     </section>
+
+    <div id="modal" class="modal flex col hide">
+      <div class="modal-header">
+        <h1 class="text-center font-36">Select board size</h1>
+        <a href="#" class="btn-close">X</a>
+      </div>
+
+      <div class="modal-body flex h-center">
+        <span class="text-center">
+          <a href="#" id="btnDefault">Default</a>
+        </span>
+        <span class="text-center">
+          <a href="#" id="btnBig">Big</a>
+        </span>
+        <span>
+          <div class="text-center">Custom</div>
+          <div class="board-custom-size-inputs">
+            <input
+              type="number"
+              placeholder="Lines"
+              class="input-altura"
+              id="altura"
+            />
+            <div>X</div>
+            <input
+              type="number"
+              placeholder="Columns"
+              class="input-largura"
+              id="largura"
+            />
+          </div>
+        </span>
+      </div>
+
+      <div class="modal-footer flex">
+        <button class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
   </body>
+  <script type="module" src="./../src/script.js"></script>
 </html>
