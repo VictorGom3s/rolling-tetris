@@ -11,8 +11,6 @@
   try {
     parse_str(implode('&', array_slice($argv, 1)), $_GET);
 
-    print_r($_GET);
-
     $conn = new PDO('mysql:host='.$_GET['host'].';', $_GET['user'], $_GET['pass']);
 
     $conn->beginTransaction();
@@ -25,9 +23,9 @@
         `name` varchar(55) NOT NULL,
         `birth_date` datetime DEFAULT NULL,
         `phone` varchar(14) DEFAULT NULL,
-        `email` varchar(40) DEFAULT NULL,
-        `username` varchar(30) NOT NULL,
-        `password` varchar(20) NOT NULL,
+        `email` varchar(40) NOT NULL UNIQUE,
+        `username` varchar(30) NOT NULL UNIQUE,
+        `password` char(32) NOT NULL,
         PRIMARY KEY (`id`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     ');
