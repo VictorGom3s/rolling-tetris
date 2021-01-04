@@ -30,11 +30,11 @@ class UserController {
       if($result == 0){
         throw new Exception("Could not retrieve user list.");
       }
+    }
+    catch (\Throwable $th) {
+      throw $th;
+    }
     return $result;
-    }
-    if($result == 0){
-      throw new Exception("Could not retrieve user.");
-    }
   }
 
   function updateUser($username, $updatedInfo){

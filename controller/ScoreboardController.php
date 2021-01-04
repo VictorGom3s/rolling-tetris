@@ -16,11 +16,11 @@ class ScoreboardController{
       if($result == 0){
         throw new Exception("Could not retrieve scoreboard.");
       }
-      return $result;
     }
     catch (\Throwable $th) {
       throw $th;
     }
+    return $result;
   }
 
   function addUserScoreboard($user){
