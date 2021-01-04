@@ -1,11 +1,45 @@
 <?php
 
 class ScoreboardController{
-  function getUserScoreboard($user){}
+  private $db;
 
-  function addUserScoreboard($user){}
+  function __construct($conn) {
+    $this->db = $conn;
+  }
 
-  function getLeaderboard(){}
+  function getUserScoreboard($user){
+    try{
+      $stmt = $this->db->prepare('SELECT score, level, time FROM scoreboard where username=?');
+      $stmt->execute([$user]);
+      $result = $stmt->fetch();
+
+      if($result == 0){
+        throw new Exception("Could not retrieve scoreboard.");
+      }
+      return $result;
+    }
+    catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  function addUserScoreboard($user){
+    try{
+
+    }
+    catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  function getLeaderboard(){
+    try{
+
+    }
+    catch (\Throwable $th) {
+      throw $th;
+    }
+  }
 }
 
 ?>

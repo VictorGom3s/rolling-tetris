@@ -12,7 +12,7 @@ class UserController {
       $stmt->execute();
       $result = $stmt->fetch();
 
-      if($res == 0){
+      if($result == 0){
         throw new Exception("Could not retrieve user list.");
       }
     }
@@ -22,11 +22,19 @@ class UserController {
   }
   
   function getUserByUsername($username){
-    $stmt = $this->db->prepare('SELECT * FROM user where username=?');
-    $stmt->execute([$username]);
-    $result = $stmt->fetch();
+    try{
+      $stmt = $this->db->prepare('SELECT * FROM user where username=?');
+      $stmt->execute([$username]);
+      $result = $stmt->fetch();
 
+      if($result == 0){
+        throw new Exception("Could not retrieve user list.");
+      }
     return $result;
+    }
+    if($result == 0){
+      throw new Exception("Could not retrieve user.");
+    }
   }
 
   function updateUser($username, $updatedInfo){
