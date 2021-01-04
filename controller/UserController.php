@@ -30,11 +30,12 @@ class UserController {
       if($result == 0){
         throw new Exception("Could not retrieve user list.");
       }
+
+      return $result;
     }
     catch (\Throwable $th) {
       throw $th;
     }
-    return $result;
   }
 
   function updateUser($username, $updatedInfo){
@@ -66,7 +67,7 @@ class UserController {
         throw new Exception('Could not log in. Incorrect username!');
         return;
       }
-
+      
       if($result['password'] == $password) {
         $this->updateSessionInfo($result);
         return;
