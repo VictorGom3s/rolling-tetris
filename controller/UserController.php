@@ -45,7 +45,9 @@ class UserController {
     }
   }
 
-  function logout() {}
+  function logout() {
+    session_destroy();
+  }
 
   function isLoggedIn() {
     if($_SESSION['logged_in']){
