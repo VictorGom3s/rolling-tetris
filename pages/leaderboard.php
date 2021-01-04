@@ -1,3 +1,10 @@
+<?php 
+  session_start();
+  if(!$_SESSION['logged_in']){
+    header("Location: http://localhost/rolling-tetris/pages/login.html");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +25,7 @@
       <header class="header">
         <ul class="h-center row v-center">
           <li class="col-3">
-            <a href="./game.html">&lt; Back</a>
+            <a href="./game.php">&lt; Back</a>
           </li>
           <li class="col-4 text-center">
             <p>Leaderboard</p>

@@ -21,7 +21,7 @@
       CREATE TABLE IF NOT EXISTS `user` (
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `name` varchar(55) NOT NULL,
-        `birth_date` datetime DEFAULT NULL,
+        `birth_date` date DEFAULT NULL,
         `phone` varchar(14) DEFAULT NULL,
         `email` varchar(40) NOT NULL UNIQUE,
         `username` varchar(30) NOT NULL UNIQUE,

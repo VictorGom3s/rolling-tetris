@@ -23,12 +23,12 @@
     $isLoggedIn = $userController->isLoggedIn();
 
     if($isLoggedIn){
-      header("Location: http://localhost/rolling-tetris/pages/game.html");
+      header("Location: http://localhost/rolling-tetris/pages/game.php");
       exit();
     }
 
   } catch (Exception $e) {
-    echo $e;
+    echo "Failed to sign up. <a href='../pages/signup.html'>Voltar</a>";
   }
 
  

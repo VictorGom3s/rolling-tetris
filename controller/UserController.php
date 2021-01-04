@@ -16,7 +16,26 @@ class UserController {
     return $result;
   }
 
-  function updateUser($id, $user){}
+  function updateUser($username, $updatedInfo){
+    try {
+
+      if(array_key_exists('password', $updatedInfo)){
+        $stmt = $this->db->prepare('UPDATE user SET name=?,birth_date=?,phone=?,email=?,password=? WHERE username=?');
+        $stmt->execute([$updatedInfo['name'], $updatedInfo['birth_date'], $updatedInfo['phone'], $updatedInfo['email'], md5($updatedInfo['password']), $username]);
+      }else{
+        $stmt = $this->db->prepare('UPDATE user SET name=?,birth_date=?,phone=?,email=? WHERE username=?');
+        $stmt->execute([$updatedInfo['name'], $updatedInfo['birth_date'], $updatedInfo['phone'], $updatedInfo['email'], $username]);
+      }
+
+      $result = $stmt->fetch();
+
+      $this->updateSessionInfo($updatedInfo);
+      return;
+
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
 
   function login($username, $password) {
     try {
@@ -28,12 +47,7 @@ class UserController {
       }
 
       if($result['password'] == $password) {
-        $_SESSION['logged_in'] = true;
-        $_SESSION['name'] = $result['name'];
-        $_SESSION['birth_date'] = $result['birth_date'];
-        $_SESSION['email'] = $result['email'];
-        $_SESSION['phone'] = $result['phone'];
-        $_SESSION['username'] = $result['username'];
+        $this->updateSessionInfo($result);
         return;
       }
 
@@ -45,8 +59,18 @@ class UserController {
     }
   }
 
+  function updateSessionInfo($user){
+    $_SESSION['logged_in'] = true;
+    $_SESSION['name'] = $user['name'];
+    $_SESSION['birth_date'] = $user['birth_date'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['phone'] = $user['phone'];
+    array_key_exists('username', $user) ? $_SESSION['username'] = $user['username'] : "";
+  }
+
   function logout() {
     session_destroy();
+    header("Location: http://localhost/rolling-tetris/");
   }
 
   function isLoggedIn() {

@@ -1,3 +1,10 @@
+<?php 
+  session_start();
+  if(!$_SESSION['logged_in']){
+    header("Location: http://localhost/rolling-tetris/pages/login.html");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,19 +24,14 @@
     <header class="header">
       <ul class="h-center">
         <li>
-          <form
-          action="../controller/logout.php"
-          method="POST"
-          >
-            <button type="submit">&lt; Logout</button>
-          </form>
+          <a href="../controller/logout.php">&lt; Logout</a>
         </li>
         <span class="flex">
           <li class="menu-item">
-            <a class="small" href="./leaderboard.html">Leaderboard </a>
+            <a class="small" href="./leaderboard.php">Leaderboard </a>
           </li>
           <li class="menu-item">
-            <a class="small" href="./profile.html">Profile</a>
+            <a class="small" href="./profile.php">Profile</a>
           </li>
         </span>
       </ul>

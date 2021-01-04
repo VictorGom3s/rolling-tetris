@@ -12,12 +12,12 @@
     $isLoggedIn = $userController->isLoggedIn();
 
     if($isLoggedIn){
-      header("Location: http://localhost/rolling-tetris/pages/game.html");
+      header("Location: http://localhost/rolling-tetris/pages/game.php");
       exit();
     }
 
   } catch (Exception $e) {
-    echo $e;
+    echo "Incorrect credentials. Try again! <a href='../pages/login.html'>Voltar</a>";
   }
 
  
