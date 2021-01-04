@@ -6,7 +6,20 @@ class UserController {
     $this->db = $conn;
   }
 
-  function getAllUsers(){}
+  function getAllUsers(){
+    try{
+      $stmt = $this->db->prepare('SELECT name FROM user');
+      $stmt->execute();
+      $result = $stmt->fetch();
+
+      if($res == 0){
+        throw new Exception("Could not retrieve user list.");
+      }
+    }
+    catch (\Throwable $th) {
+      throw $th;
+    }
+  }
   
   function getUserByUsername($username){
     $stmt = $this->db->prepare('SELECT * FROM user where username=?');
