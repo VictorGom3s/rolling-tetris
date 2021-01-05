@@ -35,11 +35,18 @@ class ScoreboardController{
 
   function getLeaderboard(){
     try{
+      $stmt = $this->db->prepare('SELECT name, score, level, time FROM scoreboard join user on user.id = scoreboard.id_usuario');
+      $stmt->execute();
+      $result = $stmt->fetch();
 
+      if($result == 0){
+        throw new Exception("Could not retrieve leaderboard.");
+      }
     }
     catch (\Throwable $th) {
       throw $th;
     }
+    return $result;
   }
 }
 
