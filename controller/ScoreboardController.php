@@ -31,7 +31,7 @@ class ScoreboardController{
       $this->level = $level;
       $this->time = $time;
 
-      $sql = "INSERT INTO scoreboard (id_usuario, score, level, time) VALUES(?, ?, ?, ?);
+      $sql = "INSERT INTO scoreboard (id_usuario, score, level, time) VALUES(?, ?, ?, ?)";
 
       $stmt = $this->db->prepare($sql);
 

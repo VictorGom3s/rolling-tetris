@@ -15,6 +15,7 @@ class UserController {
       if($result == 0){
         throw new Exception("Could not retrieve user list.");
       }
+      return $result;
     }
     catch (\Throwable $th) {
       throw $th;
