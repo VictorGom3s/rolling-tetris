@@ -24,7 +24,7 @@ class ScoreboardController{
     }
   }
 
-  function addUserScoreboard($id, $score,$level, $time){
+  function addUserScoreboard($id, $score, $level, $time){
     try {
       $this->id = $id;
       $this->score = $score;

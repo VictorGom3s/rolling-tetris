@@ -41,8 +41,7 @@ class UserController {
 
   function updateUser($username, $updatedInfo){
     try {
-
-      if(array_key_exists('password', $updatedInfo)){
+      if(array_key_exists('password', $updatedInfo) && $updatedInfo['password'] != ""){
         $stmt = $this->db->prepare('UPDATE user SET name=?,birth_date=?,phone=?,email=?,password=? WHERE username=?');
         $stmt->execute([$updatedInfo['name'], $updatedInfo['birth_date'], $updatedInfo['phone'], $updatedInfo['email'], md5($updatedInfo['password']), $username]);
       }else{
@@ -68,7 +67,7 @@ class UserController {
         throw new Exception('Could not log in. Incorrect username!');
         return;
       }
-      
+      echo $password;
       if($result['password'] == $password) {
         $this->updateSessionInfo($result);
         return;
