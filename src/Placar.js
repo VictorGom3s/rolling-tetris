@@ -9,7 +9,10 @@ export default class Placar {
   velocidade;
 
   constructor(partida) {
-    this.player = { nome: "Usuário" };
+    this.player = {
+      id: localStorage.getItem("id_usuario"),
+      nome: localStorage.getItem("nome"),
+    };
     this.historico = [];
     this.linesElement = document.getElementById("lines");
     this.levelElement = document.getElementById("level");
@@ -85,6 +88,21 @@ export default class Placar {
       level: this.level,
       tempo: tempo,
     };
+
+    const formData = new FormData();
+    formData.append("id", this.player.id);
+    formData.append("score", this.pontos);
+    formData.append("level", this.level);
+    formData.append("time", tempo);
+
+    fetch("../controller/insertScoreboard.php", {
+      method: "POST",
+      body: formData,
+    }).then((response) => {
+      if (response.status != 200) {
+        alert("Error saving your score. Sorry :P");
+      }
+    });
 
     localStorage.setItem("partida", JSON.stringify(partida));
     historicoExistente.push(partida);

@@ -18,7 +18,5 @@
 
   } catch (Exception $e) {
     echo "Incorrect credentials. Try again! <a href='../pages/login.html'>Voltar</a>";
-  }
-
- 
+  } 
 ?>

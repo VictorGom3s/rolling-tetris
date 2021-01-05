@@ -83,6 +83,7 @@ class UserController {
 
   function updateSessionInfo($user){
     $_SESSION['logged_in'] = true;
+    $_SESSION['id'] = $user['id'];
     $_SESSION['name'] = $user['name'];
     $_SESSION['birth_date'] = $user['birth_date'];
     $_SESSION['email'] = $user['email'];

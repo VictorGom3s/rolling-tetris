@@ -24,18 +24,13 @@ class ScoreboardController{
     }
   }
 
-  function addUserScoreboard($id, $score, $level, $time){
+  function addUserScoreboard($scoreboard){
     try {
-      $this->id = $id;
-      $this->score = $score;
-      $this->level = $level;
-      $this->time = $time;
-
-      $sql = "INSERT INTO scoreboard (id_usuario, score, level, time) VALUES(?, ?, ?, ?)";
+      $sql = "INSERT INTO scoreboard (id_usuario, score, level, time) VALUES (?, ?, ?, ?)";
 
       $stmt = $this->db->prepare($sql);
 
-      $res = $stmt->execute([$id, $score, $level, $time]);
+      $res = $stmt->execute([$scoreboard->id_usuario, $scoreboard->score, $scoreboard->level, $scoreboard->time]);
 
       if($res == 0){
         throw new Exception("Could not save scoreboard.");
@@ -54,11 +49,12 @@ class ScoreboardController{
       if($result == 0){
         throw new Exception("Could not retrieve leaderboard.");
       }
+
+      return $result;
     }
     catch (\Throwable $th) {
       throw $th;
     }
-    return $result;
   }
 }
 

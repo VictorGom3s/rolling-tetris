@@ -7,6 +7,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  <script><?php
+
+  ?></script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -122,11 +125,24 @@
           </div>
         </span>
       </div>
-
       <div class="modal-footer flex">
         <button class="btn btn-primary">Confirm</button>
       </div>
     </div>
   </body>
+  <script>
+    function loadLocalStorage(id, name){
+      localStorage.setItem('id_usuario', id);
+      localStorage.setItem('nome', name);
+    }
+  </script>
+
+  <?php
+    $id_usuario = $_SESSION['id'];
+    $name = $_SESSION['name'];
+    if($_SESSION['logged_in']){   
+      echo "<script>loadLocalStorage($id_usuario, '$name');</script>";
+    }
+  ?>
   <script type="module" src="./../src/script.js"></script>
 </html>

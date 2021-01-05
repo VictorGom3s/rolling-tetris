@@ -1,19 +1,19 @@
 <?php
   class Scoreboard {
-    private $level;
-    private $time;
-    private $score;
-    private User $user;
+    public $level;
+    public $time;
+    public $score;
+    public $id_usuario;
 
-    function __construct($level, $time, $score, $user){
-      this->level = $level;
-      this->time = $time;
-      this->score = $score;
-      this->user = $user;
+    function __construct($level, $time, $score, $id_usuario){
+      $this->level = $level;
+      $this->time = $time;
+      $this->score = $score;
+      $this->id_usuario = $id_usuario;
     }
 
     function toArray(){
-      return [this->level, this->time, this->score, this->user];
+      return [$this->level, $this->time, $this->score, $this->id_usuario];
     }
   }
 ?>
