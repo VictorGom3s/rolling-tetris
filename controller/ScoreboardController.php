@@ -24,11 +24,23 @@ class ScoreboardController{
     }
   }
 
-  function addUserScoreboard($user){
-    try{
+  function addUserScoreboard($id, $score,$level, $time){
+    try {
+      $this->id = $id;
+      $this->score = $score;
+      $this->level = $level;
+      $this->time = $time;
 
-    }
-    catch (\Throwable $th) {
+      $sql = "INSERT INTO scoreboard (id_usuario, score, level, time) VALUES(?, ?, ?, ?);
+
+      $stmt = $this->db->prepare($sql);
+
+      $res = $stmt->execute([$id, $score, $level, $time]);
+
+      if($res == 0){
+        throw new Exception("Could not save scoreboard.");
+      }
+    } catch (\Throwable $th) {
       throw $th;
     }
   }
