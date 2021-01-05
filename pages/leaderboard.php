@@ -1,3 +1,16 @@
+<?php 
+  session_start();
+  require_once("../config/db.php");
+  require_once('../controller/ScoreboardController.php');
+
+  if(!$_SESSION['logged_in']){
+    header("Location: http://localhost/rolling-tetris/pages/login.html");
+  }
+
+  $controller = new ScoreboardController($conn);
+  $history = $controller->getLeaderboard();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +31,7 @@
       <header class="header">
         <ul class="h-center row v-center">
           <li class="col-3">
-            <a href="./game.html">&lt; Back</a>
+            <a href="./game.php">&lt; Back</a>
           </li>
           <li class="col-4 text-center">
             <p>Leaderboard</p>
@@ -40,36 +53,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>João Pedro</td>
-              <td>30</td>
-              <td>30</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td>João Victor</td>
-              <td>30</td>
-              <td>30</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td>João Gustavo</td>
-              <td>30</td>
-              <td>30</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td>João Tony</td>
-              <td>30</td>
-              <td>30</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td>João Nikolas</td>
-              <td>30</td>
-              <td>30</td>
-              <td>30</td>
-            </tr>
+           <?php
+            foreach ($history as $row) { ?>
+              <tr>
+                <td><?=$row['name']?></td> 
+                <td><?=$row['score']?></td> 
+                <td><?=$row['level']?></td> 
+                <td><?=$row['time']?></td> 
+              </tr>
+            <?php  } ?>
           </tbody>
         </table>
       </div>

@@ -1,3 +1,16 @@
+<?php 
+  session_start();
+  require_once("../config/db.php");
+  require_once('../controller/ScoreboardController.php');
+
+  if(!$_SESSION['logged_in']){
+    header("Location: http://localhost/rolling-tetris/pages/login.html");
+  }
+
+  $controller = new ScoreboardController($conn);
+  $history = $controller->getUserScoreboard($_SESSION['id']);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,14 +30,14 @@
     <header class="header">
       <ul class="h-center">
         <li>
-          <a href="./../index.html">&lt; Logout</a>
+          <a href="../controller/logout.php">&lt; Logout</a>
         </li>
         <span class="flex">
           <li class="menu-item">
-            <a class="small" href="./leaderboard.html">Leaderboard </a>
+            <a class="small" href="./leaderboard.php">Leaderboard </a>
           </li>
           <li class="menu-item">
-            <a class="small" href="./profile.html">Profile</a>
+            <a class="small" href="./profile.php">Profile</a>
           </li>
         </span>
       </ul>
@@ -77,7 +90,17 @@
                 <th>Time</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              <?php
+                foreach ($history as $row) { ?>
+                  <tr>
+                    <td><?=$row['name']?></td> 
+                    <td><?=$row['score']?></td> 
+                    <td><?=$row['level']?></td> 
+                    <td><?=$row['time']?></td> 
+                  </tr>
+            <?php  } ?>
+            </tbody>
           </table>
         </div>
       </div>
@@ -115,11 +138,24 @@
           </div>
         </span>
       </div>
-
       <div class="modal-footer flex">
         <button class="btn btn-primary">Confirm</button>
       </div>
     </div>
   </body>
+  <script>
+    function loadLocalStorage(id, name){
+      localStorage.setItem('id_usuario', id);
+      localStorage.setItem('nome', name);
+    }
+  </script>
+
+  <?php
+    $id_usuario = $_SESSION['id'];
+    $name = $_SESSION['name'];
+    if($_SESSION['logged_in']){   
+      echo "<script>loadLocalStorage($id_usuario, '$name');</script>";
+    }
+  ?>
   <script type="module" src="./../src/script.js"></script>
 </html>

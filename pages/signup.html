@@ -35,14 +35,18 @@
           <div class="flex v-center">
             <div class="buttons flex col h-center">
               <h1>Sign up</h1>
-              <form class="flex col h-center" action="./game.html">
+              <form
+                class="flex col h-center"
+                method="POST"
+                action="../controller/signup.php"
+              >
                 <div class="flex row h-center container">
                   <div class="col-7">
                     <input
                       type="text"
                       placeholder="Full Name"
-                      pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
                       class="input"
+                      name="fullname"
                       required
                     />
                   </div>
@@ -51,6 +55,7 @@
                       type="date"
                       title="Birth Date"
                       class="input"
+                      name="birth_date"
                       required
                     />
                   </div>
@@ -59,26 +64,28 @@
                   type="text"
                   placeholder="Phone Number"
                   class="input"
+                  name="phone"
                   required
                 />
                 <input
                   type="email"
                   placeholder="Email"
                   class="input"
+                  name="email"
                   required
                 />
                 <input
                   type="text"
                   placeholder="Username"
-                  pattern="*[A-Za-z]"
                   class="input"
+                  name="username"
                   required
                 />
                 <input
                   type="password"
                   placeholder="Password"
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   class="input"
+                  name="password"
                   required
                 />
                 <button class="btn btn-primary">Confirm</button>
