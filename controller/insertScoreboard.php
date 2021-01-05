@@ -20,6 +20,7 @@ try {
   return $result;
 } catch (Exception $e) {
   echo $e;
+  return $e;
 }
 
 ?>

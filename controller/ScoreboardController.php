@@ -9,9 +9,14 @@ class ScoreboardController{
 
   function getUserScoreboard($id){
     try{
-      $stmt = $this->db->prepare('SELECT score, level, time FROM scoreboard where id_usuario=?');
+      $result = [];
+
+      $stmt = $this->db->prepare('SELECT name, score, level, time FROM scoreboard join user on user.id = scoreboard.id_usuario where id_usuario=?');
       $stmt->execute([$id]);
-      $result = $stmt->fetch();
+
+      while ($row = $stmt->fetch()) {
+        array_push($result, $row);
+      }
 
       if($result == 0){
         throw new Exception("Could not retrieve scoreboard.");
@@ -42,9 +47,12 @@ class ScoreboardController{
 
   function getLeaderboard(){
     try{
-      $stmt = $this->db->prepare('SELECT name, score, level, time FROM scoreboard join user on user.id = scoreboard.id_usuario');
+      $result = [];
+      $stmt = $this->db->prepare('SELECT name, score, level, time FROM scoreboard join user on user.id = scoreboard.id_usuario ORDER BY score DESC LIMIT 10');
       $stmt->execute();
-      $result = $stmt->fetch();
+      while ($row = $stmt->fetch()) {
+        array_push($result, $row);
+      }
 
       if($result == 0){
         throw new Exception("Could not retrieve leaderboard.");

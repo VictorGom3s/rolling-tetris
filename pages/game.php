@@ -1,15 +1,18 @@
 <?php 
   session_start();
+  require_once("../config/db.php");
+  require_once('../controller/ScoreboardController.php');
+
   if(!$_SESSION['logged_in']){
     header("Location: http://localhost/rolling-tetris/pages/login.html");
   }
-?>
 
+  $controller = new ScoreboardController($conn);
+  $history = $controller->getUserScoreboard($_SESSION['id']);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-  <script><?php
-
-  ?></script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -87,7 +90,17 @@
                 <th>Time</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              <?php
+                foreach ($history as $row) { ?>
+                  <tr>
+                    <td><?=$row['name']?></td> 
+                    <td><?=$row['score']?></td> 
+                    <td><?=$row['level']?></td> 
+                    <td><?=$row['time']?></td> 
+                  </tr>
+            <?php  } ?>
+            </tbody>
           </table>
         </div>
       </div>

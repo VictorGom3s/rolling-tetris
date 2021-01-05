@@ -78,17 +78,6 @@ export default class Placar {
   }
 
   registrarPlacar(tempo) {
-    let historicoExistente = JSON.parse(localStorage.getItem("historico"));
-
-    if (!historicoExistente) historicoExistente = [];
-
-    let partida = {
-      usuario: this.player.nome,
-      pontos: this.pontos,
-      level: this.level,
-      tempo: tempo,
-    };
-
     const formData = new FormData();
     formData.append("id", this.player.id);
     formData.append("score", this.pontos);
@@ -99,39 +88,10 @@ export default class Placar {
       method: "POST",
       body: formData,
     }).then((response) => {
+      console.log(response);
       if (response.status != 200) {
         alert("Error saving your score. Sorry :P");
       }
-    });
-
-    localStorage.setItem("partida", JSON.stringify(partida));
-    historicoExistente.push(partida);
-
-    localStorage.setItem("historico", JSON.stringify(historicoExistente));
-
-    this.historico.push();
-  }
-
-  _obterPlacares() {
-    return JSON.parse(localStorage.getItem("historico"));
-  }
-
-  atualizarHistorico() {
-    const placares = this._obterPlacares();
-
-    if (!placares) return;
-
-    this.tableHistorico.innerHTML = "";
-
-    placares.forEach((partida) => {
-      this.tableHistorico.innerHTML += `
-        <tr>
-          <td>${partida.usuario || "Eu"}</td>
-          <td>${partida.pontos || "0"}</td>
-          <td>${partida.level || "0"}</td>
-          <td>${partida.tempo || "00:00"}</td>
-        </tr>
-      `;
     });
   }
 }

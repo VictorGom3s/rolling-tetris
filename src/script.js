@@ -8,7 +8,6 @@ const canvas = document.getElementById("board");
 const preview = document.getElementById("next");
 
 const placar = new Placar();
-placar.atualizarHistorico();
 
 btnPlay.addEventListener("click", (e) => {
   e.preventDefault();
