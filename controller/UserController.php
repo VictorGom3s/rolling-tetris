@@ -67,7 +67,6 @@ class UserController {
         throw new Exception('Could not log in. Incorrect username!');
         return;
       }
-      echo $password;
       if($result['password'] == $password) {
         $this->updateSessionInfo($result);
         return;
@@ -83,7 +82,7 @@ class UserController {
 
   function updateSessionInfo($user){
     $_SESSION['logged_in'] = true;
-    $_SESSION['id'] = $user['id'];
+    array_key_exists('id', $user) ? $_SESSION['id'] = $user['id'] : "";
     $_SESSION['name'] = $user['name'];
     $_SESSION['birth_date'] = $user['birth_date'];
     $_SESSION['email'] = $user['email'];
