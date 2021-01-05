@@ -9,7 +9,10 @@ class Placar {
   velocidade;
 
   constructor(partida) {
-    this.player = { nome: "Usuário" };
+    this.player = {
+      id: localStorage.getItem("id_usuario"),
+      nome: localStorage.getItem("nome"),
+    };
     this.historico = [];
     this.linesElement = document.getElementById("lines");
     this.levelElement = document.getElementById("level");
@@ -75,45 +78,20 @@ class Placar {
   }
 
   registrarPlacar(tempo) {
-    let historicoExistente = JSON.parse(localStorage.getItem("historico"));
+    const formData = new FormData();
+    formData.append("id", this.player.id);
+    formData.append("score", this.pontos);
+    formData.append("level", this.level);
+    formData.append("time", tempo);
 
-    if (!historicoExistente) historicoExistente = [];
-
-    let partida = {
-      usuario: this.player.nome,
-      pontos: this.pontos,
-      level: this.level,
-      tempo: tempo,
-    };
-
-    localStorage.setItem("partida", JSON.stringify(partida));
-    historicoExistente.push(partida);
-
-    localStorage.setItem("historico", JSON.stringify(historicoExistente));
-
-    this.historico.push();
-  }
-
-  _obterPlacares() {
-    return JSON.parse(localStorage.getItem("historico"));
-  }
-
-  atualizarHistorico() {
-    const placares = this._obterPlacares();
-
-    if (!placares) return;
-
-    this.tableHistorico.innerHTML = "";
-
-    placares.forEach((partida) => {
-      this.tableHistorico.innerHTML += `
-        <tr>
-          <td>${partida.usuario || "Eu"}</td>
-          <td>${partida.pontos || "0"}</td>
-          <td>${partida.level || "0"}</td>
-          <td>${partida.tempo || "00:00"}</td>
-        </tr>
-      `;
+    fetch("../controller/insertScoreboard.php", {
+      method: "POST",
+      body: formData,
+    }).then((response) => {
+      console.log(response);
+      if (response.status != 200) {
+        alert("Error saving your score. Sorry :P");
+      }
     });
   }
 }
@@ -656,7 +634,6 @@ const canvas = document.getElementById("board");
 const preview = document.getElementById("next");
 
 const placar = new Placar();
-placar.atualizarHistorico();
 
 btnPlay.addEventListener("click", (e) => {
   e.preventDefault();

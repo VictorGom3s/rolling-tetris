@@ -1,3 +1,10 @@
+<?php 
+  session_start();
+  if(!$_SESSION['logged_in']){
+    header("Location: http://localhost/rolling-tetris/pages/login.html");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,36 +26,45 @@
       <header class="header">
         <ul class="h-center row v-center">
           <li class="col-3">
-            <a href="./game.html">&lt; Back</a>
+            <a href="./game.php">&lt; Back</a>
+          </li>
+          <li class="col-4 text-center">
+            <p>Edit Profile</p>
+          </li>
+          <li class="col-3">
+            <p></p>
           </li>
         </ul>
       </header>
 
       <div class="container flex v-center col">
-        <h1 class="title">Edit Profile</h1>
+        <h1 class="title-profile"></h1>
         <div class="container flex h-center">
-          <form class="flex col" action="./game.html">
+          <form class="flex col" method="post" action="../controller/updateProfile.php">
             <input
               type="text"
               placeholder="Full Name"
-              pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
               class="input"
+              value="<?=$_SESSION['name']?>"
+              name="name"
               required
             />
-            <input type="date" title="Birth Date" class="input" required />
+            <input type="date" title="Birth Date" class="input" name="birth_date"
+             value="<?=$_SESSION['birth_date']?>" required />
             <input
               type="text"
               placeholder="Phone Number"
               class="input"
+              value="<?=$_SESSION['phone']?>"
+              name="phone"
               required
             />
-            <input type="email" placeholder="Email" class="input" required />
+            <input type="email" placeholder="Email" name="email" class="input" value="<?=$_SESSION['email']?>" required />
             <input
               type="password"
               placeholder="Password"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               class="input"
-              required
+              name="password"
             />
             <button class="btn btn-primary">Confirm</button>
           </form>

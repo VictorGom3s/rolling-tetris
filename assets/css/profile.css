@@ -5,6 +5,9 @@
 @import url("./form.css");
 @import url("./header.css");
 
-.title {
-  margin: 70px 0;
+.title-profile {
+  margin: 50px 0;
+  font-size: 2rem;
+  font-family: "Press Start 2P", cursive;
+  color: var(--text-color);
 }

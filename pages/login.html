@@ -35,18 +35,23 @@
           <div class="flex v-center">
             <div class="buttons flex col h-center form-margin">
               <h1>Log in</h1>
-              <form class="flex col h-center v-centers" action="./game.html">
+              <form
+                class="flex col h-center v-centers"
+                method="POST"
+                action="../controller/login.php">
                 <input
                   type="text"
                   placeholder="Username"
                   pattern="*[A-Za-z]"
                   class="input"
+                  name="username"
                   required
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   class="input"
+                  name="password"
                   required
                 />
                 <button class="btn btn-primary">Log In</button>
